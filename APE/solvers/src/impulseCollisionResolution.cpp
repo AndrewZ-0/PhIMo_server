@@ -1,0 +1,51 @@
+
+#include "../headers/impulseCollisionResolution.h"
+
+inline void handleCollisions(std::vector<Particle>& particles, std::vector<Plane>& planes) {
+    for (int i = 0; i < particles.size(); i++) {
+        for (int j = i + 1; j < particles.size(); j++) {
+            vec3 d = particles[j].s - particles[i].s;
+            double distance = length(d);
+
+            double overlap = (particles[i].radius + particles[j].radius) - distance;
+            if (overlap > 0) {
+                vec3 du = particles[j].v - particles[i].v;
+                vec3 normal = d / distance; 
+
+                if (dot(du, normal) < 0) {
+                    double k = (1 + e) / (particles[i].mass + particles[j].mass);
+                    vec3 dv = k * du;
+
+                    particles[i].v += dv * particles[j].mass;
+                    particles[j].v -= dv * particles[i].mass;
+                }
+            }
+        }
+    }
+
+    for (Particle& p : particles) {
+        for (Plane& plane : planes) {
+            vec3 localPos = p.s - plane.s;
+            double dist = dot(localPos, plane.normal);
+
+            if (dist < -p.radius) {
+                continue;
+            }
+
+            double xProj = dot(localPos, plane.xUnit); 
+            double yProj = dot(localPos, plane.yUnit);
+            if (abs(xProj) > plane.length / 2 || abs(yProj) > plane.width / 2) {
+                continue;
+            }
+
+            double penetrationDepth = p.radius - dist;
+
+            if (penetrationDepth > 0) {
+                double velocityIntoPlane = dot(p.v, plane.normal);
+                if (velocityIntoPlane < 0) {
+                    p.v -= (1 + e) * velocityIntoPlane * plane.normal;
+                }
+            }
+        }
+    }
+}

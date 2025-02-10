@@ -1,0 +1,126 @@
+{
+    "deltaT": 0.03,
+    "noOfFrames": 20000,
+    "objects": {
+        "EARTH": {
+            "colour": [
+                0,
+                0.2,
+                1
+            ],
+            "dtype": 0,
+            "mass": 500000000,
+            "position": [
+                10,
+                0,
+                0
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0.2583466663
+            ]
+        },
+        "Interloper": {
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                -14,
+                0,
+                54
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                -1.5
+            ]
+        },
+        "Moon": {
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dtype": 0,
+            "mass": 1000000,
+            "position": [
+                11,
+                0,
+                0
+            ],
+            "radius": 0.2,
+            "velocity": [
+                0,
+                0,
+                0.4441025346
+            ]
+        },
+        "Sun": {
+            "colour": [
+                0.8823529411764706,
+                1,
+                0
+            ],
+            "dtype": 0,
+            "mass": 10000000000,
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "planet2": {
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                0,
+                0,
+                10
+            ],
+            "radius": 0.2,
+            "velocity": [
+                -0.258263,
+                0,
+                0
+            ]
+        },
+        "weirdOrbit": {
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dtype": 0,
+            "mass": 0.8,
+            "position": [
+                -10,
+                10,
+                0
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                -0.2,
+                -0.08
+            ]
+        }
+    }
+}
