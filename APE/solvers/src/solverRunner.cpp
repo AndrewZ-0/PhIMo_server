@@ -25,9 +25,7 @@ void computeForces() {
             if (r > 1e-100) {
                 vec3 invSquare = d / (r_squared * r);
 
-                for (auto& forceFunction : linker.activePOPForces) {
-                    forceFunction(particles, i, j, invSquare, d);
-                }
+                linker.applyPOPForces(particles, i, j, invSquare, d);
             }
         }
     }
@@ -49,9 +47,7 @@ void computeForces() {
 
             vec3 invSquare = planes[j].normal / (r * r);
 
-            for (auto& forceFunction : linker.activePlaneForces) {
-                forceFunction(particles, planes, i, j, invSquare);
-            }
+            linker.applyPlaneForces(particles, planes, i, j, invSquare);
         }
     }
 }
@@ -69,9 +65,7 @@ void updateParticles(double dt) {
         p.v += p.a * (dt / 2); 
     }
 
-    for (auto& collisionFunction: linker.activeCollisionFunctions) {
-        collisionFunction(particles, planes); 
-    }
+    linker.applyCollisions(particles, planes);
 }
 
 void printParticle(const Particle& p) {
@@ -94,6 +88,7 @@ int main() {
     double mass, charge, sx, sy, sz, vx, vy, vz, radius, length, width, pitch, yaw, roll;
     int dtype;
     bool toggleCollision, toggleGravity, toggleEForce, toggleMForce;
+    double e, G, E0, M0;
 
     while (true) {
         particles.clear();
@@ -103,7 +98,29 @@ int main() {
         std::getline(std::cin, input);
         std::istringstream iss(input);
         
-        iss >> dt >> max_no_frames >> stepsPerFrame >> toggleCollision >> toggleGravity >> toggleEForce >> toggleMForce;
+        iss >> dt >> max_no_frames >> stepsPerFrame;
+        
+        iss >> toggleCollision;
+        if (toggleCollision) {
+            iss >> e;
+            linker.linkCollision(e);
+        }
+        iss >> toggleGravity;
+        if (toggleGravity) {
+            iss >> G;
+            linker.linkGravity(G);
+        }
+        iss >> toggleEForce;
+        if (toggleEForce){
+            iss >> E0;
+            linker.linkEForce(E0);
+        }
+        iss >> toggleMForce;
+        if (toggleMForce) {
+            iss >> M0;
+            linker.linkMForce(M0);
+        }
+
         while (iss >> dtype) {
             if (dtype == 0) {
                 iss >> mass >> charge >> radius >> sx >> sy >> sz >> vx >> vy >> vz;
@@ -114,8 +131,6 @@ int main() {
                 planes.emplace_back(length, width, charge, vec3(sx, sy, sz), vec3(pitch, yaw, roll));
             }
         }
-
-        linker.link(toggleCollision, toggleGravity, toggleEForce, toggleMForce);
 
         dt /= stepsPerFrame;
 

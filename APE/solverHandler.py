@@ -18,13 +18,33 @@ class SolverHandler:
         stepsPerFrame = simConfigs["stepsPerFrame"]
         models = simConfigs["models"]
 
-        #collision, gravity, electric, magnetic
-        toggleCollision = int(models["collisions"])
-        toggleGravity = int(models["gravity"])
-        toggleEForce = int(models["eForce"])
-        toggleMForce = int(models["mForce"])
+        input_data = f"{deltaT} {noOfFrames} {stepsPerFrame}"
 
-        input_data = f"{deltaT} {noOfFrames} {stepsPerFrame} {toggleCollision} {toggleGravity} {toggleEForce} {toggleMForce}"
+        #collision, gravity, electric, magnetic
+        collision = models["collisions"]
+        gravity = models["gravity"]
+        eForce = models["eForce"]
+        mForce = models["mForce"]
+
+        collisionToggle = int(collision["compute"])
+        gravityToggle = int(gravity["compute"])
+        eForceToggle = int(eForce["compute"])
+        mForceToggle = int(mForce["compute"])
+
+        input_data += f" {collisionToggle}"
+        if (collisionToggle):
+            input_data += f" {collision['e']}"
+        input_data += f" {gravityToggle}"
+        if (gravityToggle):
+            input_data += f" {gravity['G']}"
+        input_data += f" {eForceToggle}"
+        if (eForceToggle):
+            input_data += f" {eForce['E0']}"
+        input_data += f" {mForceToggle}"
+        if (mForceToggle):
+            input_data += f" {mForce['M0']}"
+
+        print(input_data)
 
         for obj in simConfigs["objects"].values():
             dtype = obj["dtype"]
@@ -65,7 +85,5 @@ class SolverHandler:
             
     def terminate(self):
         self.process.terminate()
-    
-
 
 

@@ -5,9 +5,8 @@
 #include <vector>
 #include "bespokeConstructs.h"
 
-const double e = 1.0;
 
-void handleCollisions(std::vector<Particle>& particles, std::vector<Plane>& planes) {
+void handleCollisions(std::vector<Particle>& particles, std::vector<Plane>& planes, Constants phyConsts) {
     for (int i = 0; i < particles.size(); i++) {
         for (int j = i + 1; j < particles.size(); j++) {
             vec3 d = particles[j].s - particles[i].s;
@@ -19,7 +18,7 @@ void handleCollisions(std::vector<Particle>& particles, std::vector<Plane>& plan
                 vec3 normal = d / distance; 
 
                 if (dot(du, normal) < 0) {
-                    double k = (1 + e) / (particles[i].mass + particles[j].mass);
+                    double k = (1 + phyConsts.e) / (particles[i].mass + particles[j].mass);
                     vec3 dv = k * du;
 
                     particles[i].v += dv * particles[j].mass;
@@ -49,7 +48,7 @@ void handleCollisions(std::vector<Particle>& particles, std::vector<Plane>& plan
             if (penetrationDepth > 0) {
                 double velocityIntoPlane = dot(p.v, plane.normal);
                 if (velocityIntoPlane < 0) {
-                    p.v -= (1 + e) * velocityIntoPlane * plane.normal;
+                    p.v -= (1 + phyConsts.e) * velocityIntoPlane * plane.normal;
                 }
             }
         }
