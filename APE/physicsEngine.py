@@ -130,3 +130,6 @@ class PhysicsEngine:
                     with self.lock:
                         self.workers.pop(workerId)
             time.sleep(self.cleanup_interval) 
+    
+    def list_solvers(self):
+        return self.sh.list_solvers()

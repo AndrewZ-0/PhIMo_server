@@ -474,5 +474,14 @@ def update_accessSimulationTime():
 
     return jsonify({"status": "OK"})
 
+@app.route("/list_solvers", methods = ["GET"])
+def list_solvers():
+    userId = request.headers["certificate"]
+
+    if db_manager.validate_userId(userId):
+        return jsonify(ape.list_solvers())
+    else:
+        return jsonify({"status": "ERR", "message": "Invalid certificate"})
+
 if __name__ == "__main__":
     app.run(host = "0.0.0.0", port = 1234, debug = False, ssl_context = ("cert.pem", "key.pem"))

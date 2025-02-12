@@ -2,12 +2,10 @@ import subprocess
 
 class SolverHandler:
     def __init__(self):
-        name = "bruteForcePairwise"
-
-        subprocess.run(["g++", "-std=c++11", "-o", f"APE/solvers/exe/{name}", f"APE/solvers/src/{name}.cpp"], check = True)
+        subprocess.run(["g++", "-std=c++11", "-o", f"APE/solvers/exe/solverRunner", f"APE/solvers/src/solverRunner.cpp"], check = True)
     
         self.process = subprocess.Popen(
-            [f"APE/solvers/exe/{name}"],
+            [f"APE/solvers/exe/solverRunner"],
             stdin = subprocess.PIPE,
             stdout = subprocess.PIPE,
             stderr = subprocess.PIPE,
@@ -67,6 +65,7 @@ class SolverHandler:
             
     def terminate(self):
         self.process.terminate()
+    
 
 
 

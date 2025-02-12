@@ -3,15 +3,12 @@
 #include <sstream>
 #include <algorithm>
 
-#include "physics.cpp"
-#include "impulseCollisionResolution.cpp"
-
+#include "solverLinker.cpp"
 
 std::vector<Particle> particles;
 std::vector<Plane> planes;
-std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&)> activeCollisionFunctions;
-std::vector<void (*)(std::vector<Particle>&, int, int, const vec3, vec3)> activePOPForces;
-std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, int, int, vec3)> activePlaneForces;
+
+SolverLinker linker;
 
 void computeForces() {
     for (Particle& p : particles) {
@@ -28,7 +25,7 @@ void computeForces() {
             if (r > 1e-100) {
                 vec3 invSquare = d / (r_squared * r);
 
-                for (auto& forceFunction : activePOPForces) {
+                for (auto& forceFunction : linker.activePOPForces) {
                     forceFunction(particles, i, j, invSquare, d);
                 }
             }
@@ -52,7 +49,7 @@ void computeForces() {
 
             vec3 invSquare = planes[j].normal / (r * r);
 
-            for (auto& forceFunction : activePlaneForces) {
+            for (auto& forceFunction : linker.activePlaneForces) {
                 forceFunction(particles, planes, i, j, invSquare);
             }
         }
@@ -72,7 +69,7 @@ void updateParticles(double dt) {
         p.v += p.a * (dt / 2); 
     }
 
-    for (auto& collisionFunction: activeCollisionFunctions) {
+    for (auto& collisionFunction: linker.activeCollisionFunctions) {
         collisionFunction(particles, planes); 
     }
 }
@@ -89,6 +86,7 @@ void yieldFrame() {
     std::cout << "\n" << std::flush;
 }
 
+
 int main() {
     std::string input;
     double dt;
@@ -100,9 +98,7 @@ int main() {
     while (true) {
         particles.clear();
         planes.clear();
-        activeCollisionFunctions.clear();
-        activePOPForces.clear();
-        activePlaneForces.clear();
+        linker.clear();
 
         std::getline(std::cin, input);
         std::istringstream iss(input);
@@ -119,20 +115,7 @@ int main() {
             }
         }
 
-
-        if (toggleCollision) {
-            activeCollisionFunctions.push_back(handleCollisions);
-        }
-        if (toggleGravity) {
-            activePOPForces.push_back(applyGravity);
-        }
-        if (toggleEForce) {
-            activePOPForces.push_back(applyElectricForce);
-            activePlaneForces.push_back(applyElectricForce);
-        }
-        if (toggleMForce) {
-            activePOPForces.push_back(applyMagneticForce);
-        }
+        linker.link(toggleCollision, toggleGravity, toggleEForce, toggleMForce);
 
         dt /= stepsPerFrame;
 
