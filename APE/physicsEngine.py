@@ -35,7 +35,6 @@ class Worker:
         workerCompletionCallback(self.workerId)
 
     def terminate(self):
-        self.taskGenerator.close()
         self.computing = False
         self.end_time = time.time()
 

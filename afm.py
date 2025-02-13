@@ -66,11 +66,14 @@ class FileManager:
             for line in f:
                 yield line
 
-    def update_projectData(self, userId, projectName, simConfig):
+    def update_projectData(self, userId, projectName, simConfig, settingsData):
         projectDir = os.path.join(self.base_dir, userId, projectName)
 
         with open(os.path.join(projectDir, "simConfig.json"), "w") as f:
             json.dump(simConfig, f, indent = 4)
+
+        with open(os.path.join(projectDir, "settings.json"), "w") as f:
+            json.dump(settingsData, f, indent = 4)
 
     def save_screenshot(self, userId, projectName, screenshot):
         projectDir = os.path.join(self.base_dir, userId, projectName)

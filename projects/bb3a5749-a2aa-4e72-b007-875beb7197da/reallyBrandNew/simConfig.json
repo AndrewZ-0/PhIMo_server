@@ -6,16 +6,16 @@
             "e": 1
         },
         "eForce": {
-            "E0": 8.85e-12,
-            "compute": false
+            "E0": 8.854187817e-12,
+            "compute": true
         },
         "gravity": {
             "G": 6.6743015e-11,
             "compute": true
         },
         "mForce": {
-            "M0": 9e-06,
-            "compute": false
+            "M0": 1.256637061272e-06,
+            "compute": true
         }
     },
     "noOfFrames": 1000,
@@ -28,30 +28,9 @@
                 1
             ],
             "dtype": 0,
-            "mass": 1000000000000,
+            "mass": 1,
             "position": [
-                8.017213299679257,
-                0,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed_copy": {
-            "charge": 0.1,
-            "colour": [
-                1,
-                0.14901960784313725,
-                0
-            ],
-            "dtype": 0,
-            "mass": 1000000000000,
-            "position": [
-                -7.509180997142444,
+                4.22364218805134,
                 0,
                 0
             ],

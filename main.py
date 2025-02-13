@@ -306,6 +306,7 @@ def update_projectData():
     userId = headers["certificate"]
     projectName = data["projectName"]
     simConfig = data["simConfig"]
+    settingsData = data["settingsData"]
     screenshot_data_url = data["screenshot"]
 
     screenshot_base64 = screenshot_data_url.split(",")[1]
@@ -317,7 +318,7 @@ def update_projectData():
     if not db_manager.projectName_exists(userId, projectName):
         return jsonify({"status": "ERR", "message": "Project does not exist"})
 
-    file_manager.update_projectData(userId, projectName, simConfig)
+    file_manager.update_projectData(userId, projectName, simConfig, settingsData)
     file_manager.save_screenshot(userId, projectName, screenshot)
 
     return jsonify({"status": "OK"})
