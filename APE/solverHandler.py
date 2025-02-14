@@ -43,9 +43,7 @@ class SolverHandler:
         input_data += f" {mForceToggle}"
         if (mForceToggle):
             input_data += f" {mForce['M0']}"
-
-        print(input_data)
-
+            
         for obj in simConfigs["objects"].values():
             dtype = obj["dtype"]
             if dtype == 0:
@@ -75,10 +73,12 @@ class SolverHandler:
         self.process.stdin.flush()
 
         try:
-            for i in range(1, noOfFrames + 1):
+            for i in range(1, noOfFrames):
                 frame = self.process.stdout.readline()
 
                 yield frame, i / noOfFrames
+            frame = self.process.stdout.readline()[ :-1] #to removing trailing /n
+            yield frame, 1
         except GeneratorExit:
             self.terminate()
             return
