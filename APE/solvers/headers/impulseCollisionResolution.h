@@ -12,14 +12,20 @@ void handleCollisions(std::vector<Particle>& particles, std::vector<Plane>& plan
             vec3 d = particles[j].s - particles[i].s;
             double distance = length(d);
 
+            //to prevent crashing if the centres of both particles are overlapping
+            if (distance == 0) {
+                break;
+            }
+
             double overlap = (particles[i].radius + particles[j].radius) - distance;
             if (overlap > 0) {
                 vec3 du = particles[j].v - particles[i].v;
                 vec3 normal = d / distance; 
+                double du_n = dot(du, normal);
 
-                if (dot(du, normal) < 0) {
+                if (du_n < 0) {
                     double k = (1 + phyConsts.e) / (particles[i].mass + particles[j].mass);
-                    vec3 dv = k * du;
+                    vec3 dv = k * du_n * normal;
 
                     particles[i].v += dv * particles[j].mass;
                     particles[j].v -= dv * particles[i].mass;

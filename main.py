@@ -452,7 +452,6 @@ def get_simComputing_progress():
     userId = request.headers["certificate"]
     workerId = request.headers["workerId"]
 
-    print(userId)
     if not db_manager.validate_userId(userId):
         return jsonify({"status": "ERR", "message": "Invalid certificate"})
 
