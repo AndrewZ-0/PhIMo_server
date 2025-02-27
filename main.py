@@ -191,8 +191,10 @@ def get_simulationData():
     simulationData = db_manager.get_simulationData(userId, projectName, simulationName)
 
     if simulationData["status"] == "OK":
-        simConfig = file_manager.get_simulationConfig(userId, projectName, simulationName)
+        simConfig, settings = file_manager.get_simulationConfig(userId, projectName, simulationName)
         simulationData["data"]["simConfig"] = simConfig
+        simulationData["data"]["settings"] = settings
+
     return jsonify(simulationData)
 
 
@@ -206,10 +208,10 @@ def stream_simulationFramesFile():
     if not db_manager.validate_userId(userId):
         return jsonify({"status": "ERR", "message": "Invalid certificate"})
     
-    if not db_manager.projectName_exists(userId, projectName):
+    if not db_manager.project_exists(userId, projectName):
         return jsonify({"status": "ERR", "message": "Project not found"})
     
-    if not db_manager.simulationName_exists(userId, projectName, simulationName):
+    if not db_manager.simulation_exists(userId, projectName, simulationName):
         return jsonify({"status": "ERR", "message": "Simulation not found"})
     
     response = make_response(file_manager.stream_simulationFramesFile(userId, projectName, simulationName))
@@ -232,7 +234,7 @@ def create_project():
     if not re.match(r"^\w+$", projectName):
         return jsonify({"status": "ERR", "message": "Invalid project name"})
 
-    if db_manager.projectName_exists(userId, projectName): #moved here from adbm
+    if db_manager.project_exists(userId, projectName): #moved here from adbm
         return jsonify({"status": "ERR", "message": "Project name already in use"})
     
     file_manager.create_projectDir(userId, projectName)
@@ -315,11 +317,30 @@ def update_projectData():
     if not db_manager.validate_userId(userId):
         return jsonify({"status": "ERR", "message": "Invalid certificate"})
     
-    if not db_manager.projectName_exists(userId, projectName):
+    if not db_manager.project_exists(userId, projectName):
         return jsonify({"status": "ERR", "message": "Project does not exist"})
 
     file_manager.update_projectData(userId, projectName, simConfig, settingsData)
     file_manager.save_screenshot(userId, projectName, screenshot)
+
+    return jsonify({"status": "OK"})
+
+@app.route("/update_simulationSettings", methods = ["POST"])
+def update_simulationSettings():
+    headers = request.headers
+    data = request.json
+    userId = headers["certificate"]
+    projectName = data["projectName"]
+    simulationName = data["simulationName"]
+    settingsData = data["settingsData"]
+
+    if not db_manager.validate_userId(userId):
+        return jsonify({"status": "ERR", "message": "Invalid certificate"})
+    
+    if not db_manager.simulation_exists(userId, projectName, simulationName):
+        return jsonify({"status": "ERR", "message": "Project does not exist"})
+
+    file_manager.update_simulationSettings(userId, projectName, simulationName, settingsData)
 
     return jsonify({"status": "OK"})
 
@@ -331,7 +352,7 @@ def get_projectScreenshot():
     if not db_manager.validate_userId(userId):
         return jsonify({"status": "ERR", "message": "Invalid certificate"})
     
-    if not db_manager.projectName_exists(userId, projectName):
+    if not db_manager.project_exists(userId, projectName):
         return jsonify({"status": "ERR", "message": "Project does not exist"})
 
     screenshot = file_manager.get_screenshot(userId, projectName)
@@ -361,7 +382,7 @@ def delete_simulation():
     if not db_manager.validate_userId(userId):
         return jsonify({"status": "ERR", "message": "Invalid certificate"})
 
-    if not db_manager.projectName_exists(userId, projectName):
+    if not db_manager.project_exists(userId, projectName):
         return jsonify({"status": "ERR", "message": "Project does not exist"})
     
     ape.terminateAssociatedWorkers(userId, projectName, simulationName)
@@ -384,7 +405,7 @@ def rename_simulation():
     if not re.match(r"^\w+$", newSimulationName):
         return jsonify({"status": "ERR", "message": "Invalid simulation name"})
 
-    if not db_manager.projectName_exists(userId, projectName):
+    if not db_manager.project_exists(userId, projectName):
         return jsonify({"status": "ERR", "message": "Project does not exist"})
 
     response = db_manager.rename_simulation(userId, projectName, oldSimulationName, newSimulationName)
@@ -408,10 +429,10 @@ def compute_simulation():
     if not re.match(r"^\w+$", simulationName):
         return jsonify({"status": "ERR", "message": "Invalid simulation name"})
     
-    if not db_manager.projectName_exists(userId, projectName):
+    if not db_manager.project_exists(userId, projectName):
         return jsonify({"status": "ERR", "message": "Project does not exist"})
 
-    if db_manager.simulationName_exists(userId, projectName, simulationName):
+    if db_manager.simulation_exists(userId, projectName, simulationName):
         return jsonify({"status": "ERR", "message": "Simulation name already in use"})
 
     file_manager.create_simulation(userId, projectName, simulationName)

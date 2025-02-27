@@ -54,8 +54,11 @@ class FileManager:
 
         with open(os.path.join(simulationDir, "simConfig.json"), "r") as f:
             simConfig = json.load(f)
+
+        with open(os.path.join(simulationDir, "settings.json"), "r") as f:
+            settings = json.load(f)
         
-        return simConfig
+        return simConfig, settings
         
     def stream_simulationFramesFile(self, userId, projectName, simulationName):
         simulationDir = os.path.join(self.base_dir, userId, projectName, "simulations", simulationName)
@@ -74,6 +77,12 @@ class FileManager:
 
         with open(os.path.join(projectDir, "settings.json"), "w") as f:
             json.dump(settingsData, f, indent = 4)
+    
+    def update_simulationSettings(self, userId, projectName, simulationName, settingsData):
+        simulationDir = os.path.join(self.base_dir, userId, projectName, simulationName)
+
+        with open(os.path.join(simulationDir, "settings.json"), "w") as f:
+            json.dump(settingsData, f, indent = 4)
 
     def save_screenshot(self, userId, projectName, screenshot):
         projectDir = os.path.join(self.base_dir, userId, projectName)
@@ -90,14 +99,15 @@ class FileManager:
         return None
 
     def create_simulation(self, userId, projectName, simulationName):
-        simulationDir = os.path.join(self.base_dir, userId, projectName, "simulations", simulationName)
+        projectDir = os.path.join(self.base_dir, userId, projectName)
+        simulationDir = os.path.join(projectDir, "simulations", simulationName)
         os.makedirs(simulationDir, exist_ok = True)
 
         dataFile = os.path.join(simulationDir, "data.txt")
         with open(dataFile, "w") as f:
             f.write("")
         
-        projectSimConfigPath = os.path.join(self.base_dir, userId, projectName, "simConfig.json")
+        projectSimConfigPath = os.path.join(projectDir, "simConfig.json")
         if os.path.exists(projectSimConfigPath):
             with open(projectSimConfigPath, "r") as f:
                 simConfig = json.load(f)
@@ -105,6 +115,15 @@ class FileManager:
             simulationSimConfigPath = os.path.join(simulationDir, "simConfig.json")
             with open(simulationSimConfigPath, "w") as f:
                 json.dump(simConfig, f, indent = 4)
+
+        settingsPath = os.path.join(projectDir, "settings.json")
+        if os.path.exists(settingsPath):
+            with open(settingsPath, "r") as f:
+                settingsData = json.load(f)
+
+            simulationSimConfigPath = os.path.join(simulationDir, "settings.json")
+            with open(simulationSimConfigPath, "w") as f:
+                json.dump(settingsData, f, indent = 4)
 
     def delete_simulation(self, userId, projectName, simulationName):
         simulationDir = os.path.join(self.base_dir, userId, projectName, "simulations", simulationName)

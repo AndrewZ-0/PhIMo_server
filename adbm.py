@@ -177,7 +177,7 @@ class DatabaseManager:
         }
 
 
-    def projectName_exists(self, userId, projectName):
+    def project_exists(self, userId, projectName):
         self.__cursor.execute(
             """
             SELECT projectName FROM projects 
@@ -206,7 +206,7 @@ class DatabaseManager:
 
     #client facing
     def delete_project(self, userId, projectName):
-        if not self.projectName_exists(userId, projectName):
+        if not self.project_exists(userId, projectName):
             return {"status": "ERR", "message": "Project does not exist"}
         
         self.__cursor.execute(
@@ -229,7 +229,7 @@ class DatabaseManager:
 
         return {"status": "OK"}
     
-    def simulationName_exists(self, userId, projectName, simulationName):
+    def simulation_exists(self, userId, projectName, simulationName):
         self.__cursor.execute(
             """
             SELECT simulationName FROM simulations 
@@ -244,7 +244,7 @@ class DatabaseManager:
 
     #client facing
     def create_simulation(self, userId, projectName, simulationName, creationTime, lastAccessed):
-        if self.simulationName_exists(userId, projectName, simulationName):
+        if self.simulation_exists(userId, projectName, simulationName):
             return {"status": "ERR", "message": "Simulation name already in use"}
         
         self.__cursor.execute(
@@ -260,7 +260,7 @@ class DatabaseManager:
     
     #client facing
     def delete_simulation(self, userId, projectName, simulationName):
-        if not self.simulationName_exists(userId, projectName, simulationName):
+        if not self.simulation_exists(userId, projectName, simulationName):
             return {"status": "ERR", "message": "Simulation does not exist"}
         
         self.__cursor.execute(
@@ -278,10 +278,10 @@ class DatabaseManager:
     
     #client facing
     def rename_project(self, userId, oldProjectName, newProjectName):
-        if not self.projectName_exists(userId, oldProjectName):
+        if not self.project_exists(userId, oldProjectName):
             return {"status": "ERR", "message": "Old project does not exist"}
         
-        if self.projectName_exists(userId, newProjectName):
+        if self.project_exists(userId, newProjectName):
             return {"status": "ERR", "message": "New project name already in use"}
 
         self.__cursor.execute(
@@ -334,10 +334,10 @@ class DatabaseManager:
         self.__conn.commit()
     
     def rename_simulation(self, userId, projectName, oldSimulationName, newSimulationName):
-        if not self.simulationName_exists(userId, projectName, oldSimulationName):
+        if not self.simulation_exists(userId, projectName, oldSimulationName):
             return {"status": "ERR", "message": "Old simulation does not exist"}
 
-        if self.simulationName_exists(userId, projectName, newSimulationName):
+        if self.simulation_exists(userId, projectName, newSimulationName):
             return {"status": "ERR", "message": "New simulation name already in use"}
 
         self.__cursor.execute(
