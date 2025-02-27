@@ -79,7 +79,7 @@ class FileManager:
             json.dump(settingsData, f, indent = 4)
     
     def update_simulationSettings(self, userId, projectName, simulationName, settingsData):
-        simulationDir = os.path.join(self.base_dir, userId, projectName, simulationName)
+        simulationDir = os.path.join(self.base_dir, userId, projectName, "simulations", simulationName)
 
         with open(os.path.join(simulationDir, "settings.json"), "w") as f:
             json.dump(settingsData, f, indent = 4)
