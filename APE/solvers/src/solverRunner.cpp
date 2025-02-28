@@ -16,6 +16,10 @@ void computeForces() {
     }
 
     for (int i = 0; i < particles.size(); i++) {
+        linker.applyGlobalForces(particles, i);
+    }
+
+    for (int i = 0; i < particles.size(); i++) {
         for (int j = i + 1; j < particles.size(); j++) {
             vec3 d = particles[j].s - particles[i].s;
 
@@ -85,10 +89,10 @@ int main() {
     std::string input;
     double dt;
     int max_no_frames, stepsPerFrame;
-    double mass, charge, sx, sy, sz, vx, vy, vz, radius, length, width, pitch, yaw, roll;
+    double mass, charge, Cd, sx, sy, sz, vx, vy, vz, radius, length, width, pitch, yaw, roll;
     int dtype;
-    bool toggleCollision, toggleGravity, toggleEForce, toggleMForce;
-    double e, G, E0, M0;
+    bool toggleCollision, toggleGravity, toggleEForce, toggleMForce, toggleDrag;
+    double e, G, E0, M0, rho;
 
     while (true) {
         particles.clear();
@@ -120,11 +124,16 @@ int main() {
             iss >> M0;
             linker.linkMForce(M0);
         }
+        iss >> toggleDrag;
+        if (toggleDrag) {
+            iss >> rho;
+            linker.linkDrag(rho);
+        }
 
         while (iss >> dtype) {
             if (dtype == 0) {
-                iss >> mass >> charge >> radius >> sx >> sy >> sz >> vx >> vy >> vz;
-                particles.emplace_back(mass, vec3(sx, sy, sz), vec3(vx, vy, vz), radius, charge);
+                iss >> mass >> charge >> Cd >> radius >> sx >> sy >> sz >> vx >> vy >> vz;
+                particles.emplace_back(mass, vec3(sx, sy, sz), vec3(vx, vy, vz), radius, charge, Cd);
             }
             else if (dtype == 1) {
                 iss >> charge >> length >> width >> sx >> sy >> sz >> pitch >> yaw >> roll;

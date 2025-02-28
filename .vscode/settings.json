@@ -38,6 +38,18 @@
         "variant": "cpp",
         "vector": "cpp",
         "algorithm": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "__hash_table": "cpp",
+        "__node_handle": "cpp",
+        "bitset": "cpp",
+        "complex": "cpp",
+        "memory": "cpp",
+        "print": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "unordered_map": "cpp"
     }
 }

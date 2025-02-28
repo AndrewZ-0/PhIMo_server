@@ -1,11 +1,13 @@
 
 #include "../headers/physics.h"
 #include "../headers/impulseCollisionResolution.h"
+#include "../headers/drag.h"
 
 class SolverLinker {
     public:
         std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, Constants)> activeCollisionFunctions;
         std::vector<void (*)(std::vector<Particle>&, int, int, const vec3, vec3, Constants)> activePOPForces;
+        std::vector<void (*)(std::vector<Particle>&, int, Constants)> activeGlobalForces;
         std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, int, int, vec3, Constants)> activePlaneForces;
         Constants phyConsts;
 
@@ -30,6 +32,11 @@ class SolverLinker {
             this->phyConsts.setM0(M0);
         }
 
+        void linkDrag(const double rho) {
+            activeGlobalForces.push_back(applyDrag);
+            this->phyConsts.setRho(rho);
+        }
+
         void clear() {
             activeCollisionFunctions.clear();
             activePOPForces.clear();
@@ -51,6 +58,12 @@ class SolverLinker {
         void applyCollisions(std::vector<Particle>& particles, std::vector<Plane>& planes) {
             for (auto& collisionFunction: this->activeCollisionFunctions) {
                 collisionFunction(particles, planes, phyConsts); 
+            }
+        }
+
+        void applyGlobalForces(std::vector<Particle>& particles, int i) {
+            for (auto& forceFunction: this->activeGlobalForces) {
+                forceFunction(particles, i, phyConsts); 
             }
         }
 };

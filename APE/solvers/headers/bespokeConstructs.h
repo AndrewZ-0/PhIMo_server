@@ -3,6 +3,7 @@
 #define BESPOKECONSTRUCTS_H
 
 #include <cmath>
+#include "constants.h"
 
 struct vec3 {
     double x;
@@ -180,7 +181,7 @@ inline vec3 operator/ (const int value, const vec3& vec) {
 }
 
 
-double dot(const vec3& a, const vec3& b) {
+inline double dot(const vec3& a, const vec3& b) {
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
@@ -192,7 +193,7 @@ inline vec3 cross(const vec3& a, const vec3& b) {
     );
 }
 
-double length(const vec3& vec) {
+inline double length(const vec3& vec) {
     return std::sqrt(dot(vec, vec));
 }
 
@@ -245,12 +246,18 @@ inline vec3 applyEulerSet(const vec3& vec, const vec3& eulerSet) {
 
 
 struct Particle {
-    double mass, radius, charge;
+    double mass, radius, charge, Cd, A;
     vec3 s, v, a;
 
-    Particle(double mass, const vec3& s, const vec3& v, double radius = 1.0, double charge = 0.0): 
-        mass(mass), radius(radius), charge(charge), s(s), v(v) {
+    inline double calculateCrossSectionalArea() {
+        return radius * radius * pi;
+    }
+
+    Particle(double mass, const vec3& s, const vec3& v, double radius = 1.0, double charge = 0.0, double Cd = 0.0): 
+        mass(mass), radius(radius), charge(charge), Cd(Cd), s(s), v(v) {
         a = 0;
+
+        A = calculateCrossSectionalArea();
     }
 };
 
