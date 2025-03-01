@@ -93,6 +93,7 @@ int main() {
     int dtype;
     bool toggleCollision, toggleGravity, toggleEForce, toggleMForce, toggleDrag;
     double e, G, E0, M0, rho;
+    vec3 g, E, B;
 
     while (true) {
         particles.clear();
@@ -111,18 +112,18 @@ int main() {
         }
         iss >> toggleGravity;
         if (toggleGravity) {
-            iss >> G;
-            linker.linkGravity(G);
+            iss >> G >> g;
+            linker.linkGravity(G, g);
         }
         iss >> toggleEForce;
         if (toggleEForce){
-            iss >> E0;
-            linker.linkEForce(E0);
+            iss >> E0 >> E;
+            linker.linkEForce(E0, E);
         }
         iss >> toggleMForce;
         if (toggleMForce) {
-            iss >> M0;
-            linker.linkMForce(M0);
+            iss >> M0 >> B;
+            linker.linkMForce(M0, B);
         }
         iss >> toggleDrag;
         if (toggleDrag) {
@@ -142,6 +143,8 @@ int main() {
         }
 
         dt /= stepsPerFrame;
+
+        linker.optimise(particles, planes);
 
         for (int i = 0; i < max_no_frames; i++) {
             yieldFrame();

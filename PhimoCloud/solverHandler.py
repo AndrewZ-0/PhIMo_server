@@ -2,10 +2,10 @@ import subprocess
 
 class SolverHandler:
     def __init__(self):
-        subprocess.run(["g++", "-std=c++11", "-o", f"APE/solvers/exe/solverRunner", f"APE/solvers/src/solverRunner.cpp"], check = True)
+        subprocess.run(["g++", "-std=c++23", "-O3", "-march=native", "-flto", "-o", f"PhimoCloud/solvers/exe/solverRunner", f"PhimoCloud/solvers/src/solverRunner.cpp"], check = True)
     
         self.process = subprocess.Popen(
-            [f"APE/solvers/exe/solverRunner"],
+            [f"PhimoCloud/solvers/exe/solverRunner"],
             stdin = subprocess.PIPE,
             stdout = subprocess.PIPE,
             stderr = subprocess.PIPE,
@@ -38,15 +38,14 @@ class SolverHandler:
             input_data += f" {collision['e']}"
         input_data += f" {gravityToggle}"
         if (gravityToggle):
-            input_data += f" {gravity['G']}"
+            input_data += f" {gravity['G']} {gravity['g']['x']} {gravity['g']['y']} {gravity['g']['z']}"
         input_data += f" {eForceToggle}"
         if (eForceToggle):
-            input_data += f" {eForce['E0']}"
+            input_data += f" {eForce['E0']} {eForce['E']['x']} {eForce['E']['y']} {eForce['E']['z']}"
         input_data += f" {mForceToggle}"
         if (mForceToggle):
-            input_data += f" {mForce['M0']}"
+            input_data += f" {mForce['M0']} {mForce['B']['x']} {mForce['B']['y']} {mForce['B']['z']}"
         input_data += f" {dragToggle}"
-        print(dragToggle)
         if (dragToggle):
             input_data += f" {drag['rho']}"
             

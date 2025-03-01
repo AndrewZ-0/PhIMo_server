@@ -62,7 +62,7 @@
             ]
         },
         "Unnamed10": {
-            "charge": -0.001,
+            "charge": 0.001,
             "colour": [
                 0,
                 0,
@@ -372,116 +372,6 @@
                 0,
                 0,
                 0
-            ]
-        },
-        "Unnamed14": {
-            "dtype": 0,
-            "position": [
-                0,
-                12.435258858174294,
-                -7.184079025765231
-            ],
-            "velocity": [
-                0,
-                0,
-                0
-            ],
-            "radius": 1,
-            "mass": 1,
-            "charge": 0.001,
-            "dragCoef": 0.5,
-            "colour": [
-                0,
-                0,
-                1
-            ]
-        },
-        "Unnamed15": {
-            "dtype": 0,
-            "position": [
-                16.503981505391796,
-                0,
-                0
-            ],
-            "velocity": [
-                0,
-                0,
-                0
-            ],
-            "radius": 1,
-            "mass": 1,
-            "charge": 0.001,
-            "dragCoef": 0.5,
-            "colour": [
-                0,
-                0,
-                1
-            ]
-        },
-        "Unnamed16": {
-            "dtype": 0,
-            "position": [
-                0,
-                0,
-                17.00479475001562
-            ],
-            "velocity": [
-                0,
-                0,
-                0
-            ],
-            "radius": 1,
-            "mass": 1,
-            "charge": 0.001,
-            "dragCoef": 0.5,
-            "colour": [
-                0,
-                0,
-                1
-            ]
-        },
-        "Unnamed17": {
-            "dtype": 0,
-            "position": [
-                7.755204857481875,
-                4.244217823463902,
-                4.202980462206259
-            ],
-            "velocity": [
-                0,
-                0,
-                0
-            ],
-            "radius": 1,
-            "mass": 1,
-            "charge": 0.001,
-            "dragCoef": 0.5,
-            "colour": [
-                0,
-                0,
-                1
-            ]
-        },
-        "Unnamed18": {
-            "dtype": 0,
-            "position": [
-                -6.4894464422748825,
-                0,
-                7.250422686469019
-            ],
-            "velocity": [
-                0,
-                0,
-                0
-            ],
-            "radius": 1,
-            "mass": 1,
-            "charge": 0.001,
-            "dragCoef": 0.5,
-            "colour": [
-                0,
-                0,
-                1
             ]
         }
     },

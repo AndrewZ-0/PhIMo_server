@@ -3,7 +3,8 @@
 #define BESPOKECONSTRUCTS_H
 
 #include <cmath>
-#include "constants.h"
+#include "staticConstants.h"
+
 
 struct vec3 {
     double x;
@@ -149,6 +150,15 @@ struct vec3 {
         y /= value;
         z /= value;
         return *this;
+    }
+
+    inline friend std::istream& operator>>(std::istream& is, vec3& vec) {
+        is >> vec.x >> vec.y >> vec.z;
+        return is;
+    }
+
+    inline friend bool operator! (vec3& vec) {
+        return vec.x && vec.y && vec.z;
     }
 };
 

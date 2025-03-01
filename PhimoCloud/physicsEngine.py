@@ -2,7 +2,7 @@ from threading import Thread, Lock
 import uuid
 import time
 
-from APE.solverHandler import SolverHandler
+from PhimoCloud.solverHandler import SolverHandler
 
 
 class Worker:
