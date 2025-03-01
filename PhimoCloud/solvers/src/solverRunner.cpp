@@ -26,11 +26,12 @@ void computeForces() {
             double r_squared = dot(d, d);
             double r = std::sqrt(r_squared);
 
-            if (r > 1e-100) {
-                vec3 invSquare = d / (r_squared * r);
-
-                linker.applyPOPForces(particles, i, j, invSquare, d);
+            if (r < 1e-100) {
+                continue;
             }
+
+            vec3 invSquare = d / (r_squared * r);
+            linker.applyPOPForces(particles, i, j, invSquare, d);
         }
     }
 
@@ -49,9 +50,7 @@ void computeForces() {
                 continue;
             }
 
-            vec3 invSquare = planes[j].normal / (r * r);
-
-            linker.applyPlaneForces(particles, planes, i, j, invSquare);
+            linker.applyPlaneForces(particles, planes, i, j);
         }
     }
 }

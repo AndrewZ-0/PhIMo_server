@@ -5,7 +5,6 @@
 #include <vector>
 #include "bespokeConstructs.h"
 
-
 void handleCollisions(std::vector<Particle>& particles, Constants phyConsts) {
     for (int i = 0; i < particles.size(); i++) {
         for (int j = i + 1; j < particles.size(); j++) {

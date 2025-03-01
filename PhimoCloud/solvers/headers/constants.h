@@ -8,7 +8,9 @@
 struct Constants {
     //universal
     double G; //gravitational constant
+    double E0; //permittivity of free space
     double ke; //eForce factor
+    double M0; //permiability of free space
     double km; //mForce factor
 
     //global
@@ -26,6 +28,7 @@ struct Constants {
     }
 
     inline void setE0(const double E0) {
+        this->E0 = E0;
         this->ke = 1 / (4 * pi * E0);
     }
     inline void setE(vec3 E) {
@@ -33,6 +36,7 @@ struct Constants {
     }
 
     inline void setM0(const double M0) {
+        this->M0 = M0;
         this->km = M0 / (4 * pi);
     }
     inline void setB(vec3 B) {

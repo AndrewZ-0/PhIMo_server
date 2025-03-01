@@ -2,11 +2,11 @@
     "deltaT": 0.01,
     "models": {
         "collisions": {
-            "compute": true,
+            "compute": false,
             "e": 1
         },
         "drag": {
-            "compute": true,
+            "compute": false,
             "rho": 0.001225
         },
         "eForce": {
@@ -16,25 +16,25 @@
                 "z": 0
             },
             "E0": 8.854187817e-12,
-            "compute": true
+            "compute": false
         },
         "gravity": {
             "G": 6.6743015e-11,
-            "compute": true,
+            "compute": false,
             "g": {
                 "x": 0,
-                "y": -9.81,
+                "y": -91000,
                 "z": 0
             }
         },
         "mForce": {
             "B": {
-                "x": -1,
+                "x": 0,
                 "y": 0,
                 "z": 0
             },
             "M0": 1.256637061272e-06,
-            "compute": true
+            "compute": false
         }
     },
     "noOfFrames": 1000,
@@ -62,7 +62,7 @@
             ]
         },
         "Unnamed10": {
-            "charge": 0.001,
+            "charge": -0.001,
             "colour": [
                 0,
                 0,
@@ -176,11 +176,11 @@
             ]
         },
         "Unnamed13": {
-            "charge": 1e-08,
+            "charge": 0.01,
             "colour": [
-                0.7529411764705882,
-                0.7529411764705882,
-                0.7529411764705882
+                1,
+                0.14901960784313725,
+                0
             ],
             "dimentions": [
                 82,
@@ -196,6 +196,116 @@
                 0,
                 14,
                 36
+            ]
+        },
+        "Unnamed14": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                0,
+                12.435258858174294,
+                -7.184079025765231
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed15": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                16.503981505391796,
+                0,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed16": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                0,
+                0,
+                17.00479475001562
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed17": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                7.755204857481875,
+                4.244217823463902,
+                4.202980462206259
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed18": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                -6.4894464422748825,
+                0,
+                7.250422686469019
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
             ]
         },
         "Unnamed2": {

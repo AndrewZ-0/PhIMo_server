@@ -273,8 +273,16 @@ struct Particle {
 
 
 struct Plane {
-    double length, width, charge;
+    double length, width, charge, A, sigma;
     vec3 s, normal, xUnit, yUnit;
+
+    inline double calculateChargeDensity() {
+        return charge / A;
+    }
+
+    inline double calculateArea() {
+        return length * width;
+    }
 
     Plane(double length, double width, double charge, const vec3& s, const vec3& orientations): 
         length(length), width(width), charge(charge), s(s) {
@@ -282,6 +290,9 @@ struct Plane {
         normal = applyEulerSet(vec3(0, 1, 0), orientations); //upwards facing normal
         xUnit = applyEulerSet(vec3(1, 0, 0), orientations);
         yUnit = applyEulerSet(vec3(0, 0, 1), orientations);
+
+        A = calculateArea();
+        sigma = calculateChargeDensity();
     }
 };
 

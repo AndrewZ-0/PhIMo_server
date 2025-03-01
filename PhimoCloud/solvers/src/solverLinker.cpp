@@ -1,7 +1,4 @@
-
 #include "../headers/physics.h"
-#include "../headers/impulseCollisionResolution.h"
-#include "../headers/drag.h"
 
 class SolverLinker {
     private: 
@@ -14,7 +11,7 @@ class SolverLinker {
         std::vector<void (*)(std::vector<Particle>&, Constants)> activePOPCollisionFunctions;
         std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, Constants)> activePlaneCollisionFunctions;
         std::vector<void (*)(std::vector<Particle>&, int, int, const vec3, vec3, Constants)> activePOPForces;
-        std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, int, int, vec3, Constants)> activePlaneForces;
+        std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, int, int, Constants)> activePlaneForces;
         std::vector<void (*)(std::vector<Particle>&, int, Constants)> activeGlobalForces;
         Constants phyConsts;
 
@@ -68,9 +65,9 @@ class SolverLinker {
             }
         }
 
-        void applyPlaneForces(std::vector<Particle>& particles, std::vector<Plane>& planes, int i, int j, vec3 invSquare) {
+        void applyPlaneForces(std::vector<Particle>& particles, std::vector<Plane>& planes, int i, int j) {
             for (auto& forceFunction : this->activePlaneForces) {
-                forceFunction(particles, planes, i, j, invSquare, this->phyConsts);
+                forceFunction(particles, planes, i, j, this->phyConsts);
             }
         }
 

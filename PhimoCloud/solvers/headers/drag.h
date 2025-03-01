@@ -4,7 +4,6 @@
 
 #include <vector>
 #include "bespokeConstructs.h"
-#include <iostream>
 
 inline void applyDrag(std::vector<Particle>& particles, int i, Constants phyConsts) {
     double speedSquared = dot(particles[i].v, particles[i].v);
