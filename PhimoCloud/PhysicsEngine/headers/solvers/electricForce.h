@@ -2,8 +2,8 @@
 #ifndef ELECTRICFORCE_H
 #define ELECTRICFORCE_H
 
-#include "bespokeConstructs.h"
-#include "constants.h"
+#include "../bespokeConstructs.h"
+#include "../constants.h"
 #include <vector>
 
 inline void applyElectricForce(std::vector<Particle>& particles, int i, int j, vec3 invSquare, vec3 d, Constants phyConsts) {

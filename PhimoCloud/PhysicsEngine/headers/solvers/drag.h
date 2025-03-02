@@ -3,7 +3,7 @@
 #define DRAG_H
 
 #include <vector>
-#include "bespokeConstructs.h"
+#include "../bespokeConstructs.h"
 
 inline void applyDrag(std::vector<Particle>& particles, int i, Constants phyConsts) {
     double speedSquared = dot(particles[i].v, particles[i].v);

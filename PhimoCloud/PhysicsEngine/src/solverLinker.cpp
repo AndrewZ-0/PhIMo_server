@@ -1,6 +1,6 @@
 #include "../headers/physics.h"
-#include "bruteForcer.cpp"
-#include "leapfrog.cpp"
+#include "algorithms/bruteForcer.cpp"
+#include "intergrators/leapfrog.cpp"
 
 void noOpComputePOPForces(std::function<void (std::vector<Particle>&, int, int, vec3, vec3)> applyPOPForces, std::vector<Particle>& particles) {}
 void noOpComputePlaneForces(std::function<void (std::vector<Particle>&, std::vector<Plane>&, int, int)> applyPlaneForces, std::vector<Particle>& particles, std::vector<Plane>& planes) {}
@@ -24,6 +24,7 @@ class SolverLinker {
 
         Constants phyConsts;
 
+        //apply integrator
         void updateParticles(std::vector<Particle>& particles, std::vector<Plane>& planes, double dt) {
             leapFrog_updateParticles(
                 [&](std::vector<Particle>& particles, std::vector<Plane>& planes) {

@@ -2,8 +2,8 @@
 #ifndef GRAVITY_H
 #define GRAVITY_H
 
-#include "bespokeConstructs.h"
-#include "constants.h"
+#include "../bespokeConstructs.h"
+#include "../constants.h"
 #include <vector>
 
 inline void applyGravity(std::vector<Particle>& particles, int i, int j, vec3 invSquare, vec3 d, Constants phyConsts) {

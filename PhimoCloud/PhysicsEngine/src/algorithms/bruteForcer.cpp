@@ -1,4 +1,4 @@
-#include "../headers/physics.h"
+#include "../../headers/physics.h"
 #include <functional>
 
 void bruteForceComputePOPForces(std::function<void (std::vector<Particle>&, int, int, vec3, vec3)> applyPOPForces, std::vector<Particle>& particles) {

@@ -2,8 +2,8 @@
 #ifndef MAGNETICFORCE_H
 #define MAGNETICFORCE_H
 
-#include "bespokeConstructs.h"
-#include "constants.h"
+#include "../bespokeConstructs.h"
+#include "../constants.h"
 #include <vector>
 
 inline void applyMagneticForce(std::vector<Particle>& particles, int i, int j, vec3 invSquare, vec3 d, Constants phyConsts) {

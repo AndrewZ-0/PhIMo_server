@@ -2,10 +2,10 @@ import subprocess
 
 class SolverHandler:
     def __init__(self):
-        subprocess.run(["g++", "-std=c++23", "-O3", "-march=native", "-flto", "-o", f"PhimoCloud/solvers/exe/solverRunner", f"PhimoCloud/solvers/src/solverRunner.cpp"], check = True)
+        subprocess.run(["g++", "-std=c++23", "-O3", "-march=native", "-flto", "-o", f"PhimoCloud/PhysicsEngine/exe/main", f"PhimoCloud/PhysicsEngine/src/main.cpp"], check = True)
     
         self.process = subprocess.Popen(
-            [f"PhimoCloud/solvers/exe/solverRunner"],
+            [f"PhimoCloud/PhysicsEngine/exe/main"],
             stdin = subprocess.PIPE,
             stdout = subprocess.PIPE,
             stderr = subprocess.PIPE,

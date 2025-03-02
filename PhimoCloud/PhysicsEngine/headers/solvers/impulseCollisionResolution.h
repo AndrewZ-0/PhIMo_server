@@ -3,7 +3,7 @@
 #define IMPULSECOLLISIONRESOLUTION_H
 
 #include <vector>
-#include "bespokeConstructs.h"
+#include "../bespokeConstructs.h"
 
 void handleCollisions(std::vector<Particle>& particles, Constants phyConsts) {
     for (int i = 0; i < particles.size(); i++) {

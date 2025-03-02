@@ -3,6 +3,7 @@
 #define BESPOKECONSTRUCTS_H
 
 #include <cmath>
+#include <sstream>
 #include "staticConstants.h"
 
 
