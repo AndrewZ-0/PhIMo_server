@@ -1,28 +1,49 @@
 #include "../headers/physics.h"
+#include "bruteForcer.cpp"
+#include "leapfrog.cpp"
+
+void noOpComputePOPForces(std::function<void (std::vector<Particle>&, int, int, vec3, vec3)> applyPOPForces, std::vector<Particle>& particles) {}
+void noOpComputePlaneForces(std::function<void (std::vector<Particle>&, std::vector<Plane>&, int, int)> applyPlaneForces, std::vector<Particle>& particles, std::vector<Plane>& planes) {}
 
 class SolverLinker {
     private: 
         //God I hate function pointers
+        void (* computePOPForces)(std::function<void(std::vector<Particle>&, int, int, vec3, vec3)>, std::vector<Particle>&);
+        void (* computePlaneForces)(std::function<void(std::vector<Particle>&, std::vector<Plane>&, int, int)>, std::vector<Particle>&, std::vector<Plane>&);
+
         void removeAcitveGlobalFunction(std::vector<void (*)(std::vector<Particle>&, int, Constants)> functionList, void (*functionToRemove)(std::vector<Particle>&, int, Constants)) {
             functionList.erase(std::remove(functionList.begin(), functionList.end(), functionToRemove), functionList.end());
         }
 
     public:
-        std::vector<void (*)(std::vector<Particle>&, Constants)> activePOPCollisionFunctions;
-        std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, Constants)> activePlaneCollisionFunctions;
-        std::vector<void (*)(std::vector<Particle>&, int, int, const vec3, vec3, Constants)> activePOPForces;
-        std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, int, int, Constants)> activePlaneForces;
+        std::vector<void (*)(std::vector<Particle>&, Constants)> activePOPCollisionSolvers;
+        std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, Constants)> activePlaneCollisionSolvers;
+        std::vector<void (*)(std::vector<Particle>&, int, int, const vec3, vec3, Constants)> activePOPSolvers;
+        std::vector<void (*)(std::vector<Particle>&, std::vector<Plane>&, int, int, Constants)> activePlaneSolvers;
         std::vector<void (*)(std::vector<Particle>&, int, Constants)> activeGlobalForces;
+
         Constants phyConsts;
 
+        void updateParticles(std::vector<Particle>& particles, std::vector<Plane>& planes, double dt) {
+            leapFrog_updateParticles(
+                [&](std::vector<Particle>& particles, std::vector<Plane>& planes) {
+                    this->computeForces(particles, planes);
+                }, 
+                [&](std::vector<Particle>& particles, std::vector<Plane>& planes) {
+                    this->applyCollisions(particles, planes);
+                }, 
+                particles, planes, dt
+            );
+        }
+
         void linkCollision(const double e) {
-            activePlaneCollisionFunctions.push_back(handleCollisions);
-            activePOPCollisionFunctions.push_back(handleCollisions);
+            activePlaneCollisionSolvers.push_back(handleCollisions);
+            activePOPCollisionSolvers.push_back(handleCollisions);
             this->phyConsts.setE(e);
         }
 
         void linkGravity(const double G, vec3 g) {
-            activePOPForces.push_back(applyGravity);
+            activePOPSolvers.push_back(applyGravity);
             this->phyConsts.setG(G);
 
             activeGlobalForces.push_back(applyUniformGravity);
@@ -30,8 +51,8 @@ class SolverLinker {
         }
 
         void linkEForce(const double E0, vec3 E) {
-            activePOPForces.push_back(applyElectricForce);
-            activePlaneForces.push_back(applyElectricForce);
+            activePOPSolvers.push_back(applyElectricForce);
+            activePlaneSolvers.push_back(applyElectricForce);
             this->phyConsts.setE0(E0);
 
             activeGlobalForces.push_back(applyUniformElectricForce);
@@ -39,7 +60,7 @@ class SolverLinker {
         }
 
         void linkMForce(const double M0, vec3 B) {
-            activePOPForces.push_back(applyMagneticForce);
+            activePOPSolvers.push_back(applyMagneticForce);
             this->phyConsts.setM0(M0);
 
             activeGlobalForces.push_back(applyUniformMagneticForce);
@@ -52,31 +73,31 @@ class SolverLinker {
         }
 
         void clear() {
-            activePOPCollisionFunctions.clear();
-            activePlaneCollisionFunctions.clear();
-            activePOPForces.clear();
-            activePlaneForces.clear();
+            activePOPCollisionSolvers.clear();
+            activePlaneCollisionSolvers.clear();
+            activePOPSolvers.clear();
+            activePlaneSolvers.clear();
             activeGlobalForces.clear();
         }
 
         void applyPOPForces(std::vector<Particle>& particles, int i, int j, vec3 invSquare, vec3 d) {
-            for (auto& forceFunction : this->activePOPForces) {
+            for (auto& forceFunction : this->activePOPSolvers) {
                 forceFunction(particles, i, j, invSquare, d, this->phyConsts);
             }
         }
 
         void applyPlaneForces(std::vector<Particle>& particles, std::vector<Plane>& planes, int i, int j) {
-            for (auto& forceFunction : this->activePlaneForces) {
+            for (auto& forceFunction : this->activePlaneSolvers) {
                 forceFunction(particles, planes, i, j, this->phyConsts);
             }
         }
 
         void applyCollisions(std::vector<Particle>& particles, std::vector<Plane>& planes) {
-            for (auto& collisionFunction: this->activePOPCollisionFunctions) {
+            for (auto& collisionFunction: this->activePOPCollisionSolvers) {
                 collisionFunction(particles, phyConsts); 
             }
 
-            for (auto& collisionFunction: this->activePlaneCollisionFunctions) {
+            for (auto& collisionFunction: this->activePlaneCollisionSolvers) {
                 collisionFunction(particles, planes, phyConsts); 
             }
         }
@@ -87,15 +108,47 @@ class SolverLinker {
             }
         }
 
-        void optimise(std::vector<Particle>& particles, std::vector<Plane>& planes) {
-            if (! particles.size()) {
-                activePOPForces.clear();
-                activePOPCollisionFunctions.clear();
+        void computeForces(std::vector<Particle>& particles, std::vector<Plane>& planes) {
+            for (Particle& p : particles) {
+                p.a = 0;
             }
+        
+            for (int i = 0; i < particles.size(); i++) {
+                applyGlobalForces(particles, i);
+            }
+        
+            this->computePOPForces(
+                [&](std::vector<Particle>& particles, int i, int j, vec3 invSquare, vec3 d) {
+                    applyPOPForces(particles, i, j, invSquare, d);
+                }, 
+                particles
+            );
+        
+            this->computePlaneForces(
+                [&](std::vector<Particle>& particles, std::vector<Plane>& planes, int i, int j) {
+                    applyPlaneForces(particles, planes, i, j);
+                }, 
+                particles, planes
+            );
+        }
 
-            if (! planes.size()) {
-                activePlaneForces.clear();
-                activePlaneCollisionFunctions.clear();
+        void optimise(std::vector<Particle>& particles, std::vector<Plane>& planes) {
+            if (particles.empty()) {
+                activePOPSolvers.clear();
+                activePOPCollisionSolvers.clear();
+                this->computePOPForces = noOpComputePOPForces;
+            } 
+            else {
+                this->computePOPForces = bruteForceComputePOPForces;
+            }
+        
+            if (planes.empty()) {
+                activePlaneSolvers.clear();
+                activePlaneCollisionSolvers.clear();
+                this->computePlaneForces = noOpComputePlaneForces;
+            } 
+            else {
+                this->computePlaneForces = bruteForceComputePlaneForces;
             }
 
             if (! this->phyConsts.g) {

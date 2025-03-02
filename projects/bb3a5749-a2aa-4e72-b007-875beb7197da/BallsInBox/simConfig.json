@@ -2,11 +2,11 @@
     "deltaT": 0.01,
     "models": {
         "collisions": {
-            "compute": false,
+            "compute": true,
             "e": 1
         },
         "drag": {
-            "compute": false,
+            "compute": true,
             "rho": 0.001225
         },
         "eForce": {
@@ -16,14 +16,14 @@
                 "z": 0
             },
             "E0": 8.854187817e-12,
-            "compute": false
+            "compute": true
         },
         "gravity": {
             "G": 6.6743015e-11,
-            "compute": false,
+            "compute": true,
             "g": {
                 "x": 0,
-                "y": -91000,
+                "y": -9.81,
                 "z": 0
             }
         },
@@ -34,7 +34,7 @@
                 "z": 0
             },
             "M0": 1.256637061272e-06,
-            "compute": false
+            "compute": true
         }
     },
     "noOfFrames": 1000,
@@ -188,7 +188,7 @@
             ],
             "dtype": 1,
             "orientation": [
-                3.141592653589793,
+                0,
                 0,
                 1.5707963267948966
             ],
@@ -300,6 +300,28 @@
                 -6.4894464422748825,
                 0,
                 7.250422686469019
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed19": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                0,
+                0,
+                -10.6283127999075
             ],
             "radius": 1,
             "velocity": [

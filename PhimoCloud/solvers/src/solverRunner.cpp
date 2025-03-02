@@ -10,67 +10,6 @@ std::vector<Plane> planes;
 
 SolverLinker linker;
 
-void computeForces() {
-    for (Particle& p : particles) {
-        p.a = 0;
-    }
-
-    for (int i = 0; i < particles.size(); i++) {
-        linker.applyGlobalForces(particles, i);
-    }
-
-    for (int i = 0; i < particles.size(); i++) {
-        for (int j = i + 1; j < particles.size(); j++) {
-            vec3 d = particles[j].s - particles[i].s;
-
-            double r_squared = dot(d, d);
-            double r = std::sqrt(r_squared);
-
-            if (r < 1e-100) {
-                continue;
-            }
-
-            vec3 invSquare = d / (r_squared * r);
-            linker.applyPOPForces(particles, i, j, invSquare, d);
-        }
-    }
-
-    for (int i = 0; i < particles.size(); i++) {
-        for (int j = 0; j < planes.size(); j++) {
-            vec3 localPos = particles[i].s - planes[j].s;
-            double r = dot(localPos, planes[j].normal);
-
-            if (r < 0) {
-                continue;
-            }
-
-            double xProj = dot(localPos, planes[j].xUnit); 
-            double yProj = dot(localPos, planes[j].yUnit);
-            if (abs(xProj) > planes[j].length / 2 || abs(yProj) > planes[j].width / 2) {
-                continue;
-            }
-
-            linker.applyPlaneForces(particles, planes, i, j);
-        }
-    }
-}
-
-//leapfrog
-void updateParticles(double dt) {
-    for (Particle& p : particles) {
-        p.v += p.a * (dt / 2);
-        p.s += p.v * dt;
-    }
-
-    computeForces();
-
-    for (Particle& p : particles) {
-        p.v += p.a * (dt / 2); 
-    }
-
-    linker.applyCollisions(particles, planes);
-}
-
 void printParticle(const Particle& p) {
     std::cout << p.s.x << " " << p.s.y << " " << p.s.z << " " << p.v.x << " " << p.v.y << " " << p.v.z;
 }
@@ -149,7 +88,7 @@ int main() {
             yieldFrame();
 
             for (int j = 0; j < stepsPerFrame; j++) {
-                updateParticles(dt); 
+                linker.updateParticles(particles, planes, dt); 
             }
         }
     }

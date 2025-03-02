@@ -1,11 +1,8 @@
-import atexit
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 import re
 from datetime import datetime
 import base64
-from threading import Thread
-#from flask_sslify import SSLify
 
 #bespoke
 from adbm import DatabaseManager
@@ -14,7 +11,6 @@ from PhimoCloud.physicsEngine import PhysicsEngine
 
 app = Flask(__name__)
 CORS(app, supports_credentials = True)
-#sslify = SSLify(app)
 
 db_manager = DatabaseManager()
 file_manager = FileManager()
@@ -26,26 +22,16 @@ def handle_client_disconnect(client_ip):
     if client_ip in connected_clients:
         connected_clients.remove(client_ip)
         print(f"Client {client_ip} disconnected")
-
-def notify_clients_server_closing():
-    print("Server closing, notifying clients...")
-    for client_ip in connected_clients:
-        print(f"Notifying client {client_ip} of server closing")
-        #note to self, actally notify client 
     
 
 @app.route("/server_status", methods = ["GET"])
 def server_status():
     return jsonify({"status": "RUNNING"})
 
-#using this to force notifications when server is closed by control + C
-atexit.register(notify_clients_server_closing)
-
 @app.route("/connect", methods = ["GET"])
 def handle_client_connect():
     client_ip = request.remote_addr
     connected_clients.add(client_ip)
-    #print(f"Client {client_ip} connected")
 
     return jsonify({"response": "CONNECTED"})
 
@@ -106,7 +92,6 @@ def validate_certificate():
     certificate = data["certificate"]
 
     if db_manager.validate_userId(certificate):
-        #print("Valid certificate")
         return jsonify({"status": "OK"})
     else:
         return jsonify({"status": "ERR", "message": "Invalid certificate"})

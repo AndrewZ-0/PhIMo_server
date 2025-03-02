@@ -160,6 +160,10 @@ struct vec3 {
     inline friend bool operator! (vec3& vec) {
         return vec.x && vec.y && vec.z;
     }
+
+    inline friend vec3 operator- (vec3& vec) {
+        return vec3(-vec.x, -vec.y, -vec.z);
+    }
 };
 
 inline vec3 operator+ (const double value, const vec3& vec) {

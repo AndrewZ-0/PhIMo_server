@@ -38,23 +38,25 @@ void handleCollisions(std::vector<Particle>& particles, std::vector<Plane>& plan
     for (Particle& p : particles) {
         for (Plane& plane : planes) {
             vec3 localPos = p.s - plane.s;
-            double dist = dot(localPos, plane.normal);
+            double h = dot(localPos, plane.normal);
 
-            if (dist < -p.radius) {
+            double abs_h = abs(h);
+
+            if (abs_h > p.radius) {
                 continue;
             }
 
-            double xProj = dot(localPos, plane.xUnit); 
+            double xProj = dot(localPos, plane.xUnit);
             double yProj = dot(localPos, plane.yUnit);
             if (abs(xProj) > plane.length / 2 || abs(yProj) > plane.width / 2) {
                 continue;
             }
 
-            double penetrationDepth = p.radius - dist;
+            double penetrationDepth = p.radius - abs_h;
 
             if (penetrationDepth > 0) {
                 double velocityIntoPlane = dot(p.v, plane.normal);
-                if (velocityIntoPlane < 0) {
+                if ((h > 0 && velocityIntoPlane < 0) || (h < 0 && velocityIntoPlane > 0)) {
                     p.v -= (1 + phyConsts.e) * velocityIntoPlane * plane.normal;
                 }
             }
