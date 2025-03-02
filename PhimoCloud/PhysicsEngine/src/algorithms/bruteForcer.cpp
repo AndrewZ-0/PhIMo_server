@@ -2,8 +2,9 @@
 #include <functional>
 
 void bruteForceComputePOPForces(std::function<void (std::vector<Particle>&, int, int, vec3, vec3)> applyPOPForces, std::vector<Particle>& particles) {
-    for (int i = 0; i < particles.size(); i++) {
-        for (int j = i + 1; j < particles.size(); j++) {
+    int len = particles.size();
+    for (int i = 0; i < len; i++) {
+        for (int j = i + 1; j < len; j++) {
             vec3 d = particles[j].s - particles[i].s;
 
             double r_squared = dot(d, d);
@@ -20,8 +21,10 @@ void bruteForceComputePOPForces(std::function<void (std::vector<Particle>&, int,
 }
 
 void bruteForceComputePlaneForces(std::function<void (std::vector<Particle>&, std::vector<Plane>&, int, int)> applyPlaneForces, std::vector<Particle>& particles, std::vector<Plane>& planes) {
-    for (int i = 0; i < particles.size(); i++) {
-        for (int j = 0; j < planes.size(); j++) {
+    int particles_len = particles.size();
+    int planes_len = planes.size();
+    for (int i = 0; i < particles_len; i++) {
+        for (int j = 0; j < planes_len; j++) {
             vec3 localPos = particles[i].s - planes[j].s;
             double r = dot(localPos, planes[j].normal);
 

@@ -20,6 +20,8 @@ struct Constants {
     vec3 E; //global electric field strength
     vec3 B; //global magnetic field strength
 
+    double inv4Pi = 1 / (4 * pi);
+
     inline void setG(const double G) {
         this->G = G;
     }
@@ -29,7 +31,7 @@ struct Constants {
 
     inline void setE0(const double E0) {
         this->E0 = E0;
-        this->ke = 1 / (4 * pi * E0);
+        this->ke = inv4Pi / E0;
     }
     inline void setE(vec3 E) {
         this->E = E;
@@ -37,13 +39,13 @@ struct Constants {
 
     inline void setM0(const double M0) {
         this->M0 = M0;
-        this->km = M0 / (4 * pi);
+        this->km = M0 * inv4Pi;
     }
     inline void setB(vec3 B) {
         this->B = B;
     }
 
-    inline void setE(const double e) {
+    inline void sete(const double e) {
         this->e = e;
     }
 

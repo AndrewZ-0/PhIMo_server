@@ -40,7 +40,7 @@
     "noOfFrames": 1000,
     "objects": {
         "Unnamed": {
-            "charge": -0.001,
+            "charge": 0.001,
             "colour": [
                 0,
                 0,
@@ -243,7 +243,7 @@
             ]
         },
         "Unnamed16": {
-            "charge": -0.001,
+            "charge": 0.001,
             "colour": [
                 0,
                 0,
@@ -397,7 +397,7 @@
             ]
         },
         "Unnamed22": {
-            "charge": -0.001,
+            "charge": 0.001,
             "colour": [
                 0,
                 0,
@@ -419,7 +419,7 @@
             ]
         },
         "Unnamed23": {
-            "charge": -0.001,
+            "charge": 0.001,
             "colour": [
                 0,
                 0,
@@ -459,402 +459,6 @@
             "velocity": [
                 0,
                 4,
-                0
-            ]
-        },
-        "Unnamed25": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                0,
-                0,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                2,
-                15.95912871686815,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy10": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                20,
-                -20,
-                19.613362110634032
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy11": {
-            "charge": -0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                22,
-                -22,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy2": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                -13.093070473617711,
-                -13.874625082297921,
-                -15.323307207966764
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy3": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                6,
-                -6,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy4": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                8,
-                -8,
-                19.832499045554602
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy5": {
-            "charge": -0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                10,
-                -10,
-                11.473131197320374
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy6": {
-            "charge": -0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                12,
-                -12,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy8": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                16,
-                -16,
-                -4.831148163073532
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy9": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                18,
-                -18,
-                12.90697388651719
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy_copy2": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                6,
-                -0.6637234823038156,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy_copy3": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                10.040138636409031,
-                -2.6637234823038156,
-                -14.443531825485529
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy_copy4": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                10,
-                -21.381895190593433,
-                19.55012811041518
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy_copy5": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                -6.396662473289245,
-                -6.663723482303816,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy_copy7": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                16,
-                -10.663723482303816,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy_copy8": {
-            "charge": -0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                18,
-                3.3029761309364787,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
-                0
-            ]
-        },
-        "Unnamed25_copy_copy9": {
-            "charge": 0.001,
-            "colour": [
-                0,
-                0,
-                1
-            ],
-            "dragCoef": 0.5,
-            "dtype": 0,
-            "mass": 1,
-            "position": [
-                6.87273292036817,
-                -14.663723482303816,
-                0
-            ],
-            "radius": 1,
-            "velocity": [
-                0,
-                0,
                 0
             ]
         },
@@ -947,7 +551,7 @@
             ]
         },
         "Unnamed7": {
-            "charge": -0.001,
+            "charge": 0.001,
             "colour": [
                 0,
                 0,
@@ -1010,6 +614,468 @@
                 0,
                 0,
                 0
+            ]
+        },
+        "Unnamed25": {
+            "dtype": 0,
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy": {
+            "dtype": 0,
+            "position": [
+                2,
+                3.3362765176961844,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy2": {
+            "dtype": 0,
+            "position": [
+                4,
+                -4,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy3": {
+            "dtype": 0,
+            "position": [
+                6,
+                -6,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy4": {
+            "dtype": 0,
+            "position": [
+                8,
+                -8,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy5": {
+            "dtype": 0,
+            "position": [
+                10,
+                -10,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy6": {
+            "dtype": 0,
+            "position": [
+                12,
+                -12,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy7": {
+            "dtype": 0,
+            "position": [
+                14,
+                -14,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy8": {
+            "dtype": 0,
+            "position": [
+                16,
+                -16,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy9": {
+            "dtype": 0,
+            "position": [
+                18,
+                -18,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy10": {
+            "dtype": 0,
+            "position": [
+                20,
+                -20,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy11": {
+            "dtype": 0,
+            "position": [
+                22,
+                -22,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy_copy": {
+            "dtype": 0,
+            "position": [
+                4,
+                1.3362765176961844,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy_copy2": {
+            "dtype": 0,
+            "position": [
+                6,
+                -0.6637234823038156,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy_copy3": {
+            "dtype": 0,
+            "position": [
+                8,
+                -2.6637234823038156,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy_copy4": {
+            "dtype": 0,
+            "position": [
+                10,
+                -4.663723482303816,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy_copy5": {
+            "dtype": 0,
+            "position": [
+                12,
+                -6.663723482303816,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy_copy6": {
+            "dtype": 0,
+            "position": [
+                14,
+                -8.663723482303816,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy_copy7": {
+            "dtype": 0,
+            "position": [
+                16,
+                -10.663723482303816,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy_copy8": {
+            "dtype": 0,
+            "position": [
+                18,
+                -12.663723482303816,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        },
+        "Unnamed25_copy_copy9": {
+            "dtype": 0,
+            "position": [
+                20,
+                -14.663723482303816,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
             ]
         }
     },

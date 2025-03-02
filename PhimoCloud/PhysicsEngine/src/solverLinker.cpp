@@ -40,7 +40,7 @@ class SolverLinker {
         void linkCollision(const double e) {
             activePlaneCollisionSolvers.push_back(handleCollisions);
             activePOPCollisionSolvers.push_back(handleCollisions);
-            this->phyConsts.setE(e);
+            this->phyConsts.sete(e);
         }
 
         void linkGravity(const double G, vec3 g) {

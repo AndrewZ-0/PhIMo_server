@@ -1,6 +1,6 @@
 import subprocess
 
-class SolverHandler:
+class EngineHandler:
     def __init__(self):
         subprocess.run(["g++", "-std=c++23", "-O3", "-march=native", "-flto", "-o", f"PhimoCloud/PhysicsEngine/exe/main", f"PhimoCloud/PhysicsEngine/src/main.cpp"], check = True)
     

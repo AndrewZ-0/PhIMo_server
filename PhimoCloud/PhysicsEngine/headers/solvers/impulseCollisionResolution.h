@@ -6,8 +6,9 @@
 #include "../bespokeConstructs.h"
 
 void handleCollisions(std::vector<Particle>& particles, Constants phyConsts) {
-    for (int i = 0; i < particles.size(); i++) {
-        for (int j = i + 1; j < particles.size(); j++) {
+    int len = particles.size();
+    for (int i = 0; i < len; i++) {
+        for (int j = i + 1; j < len; j++) {
             vec3 d = particles[j].s - particles[i].s;
             double distance = length(d);
 

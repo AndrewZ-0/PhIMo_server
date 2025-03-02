@@ -2,7 +2,7 @@ from threading import Thread, Lock
 import uuid
 import time
 
-from PhimoCloud.solverHandler import SolverHandler
+from PhimoCloud.engineHandler import EngineHandler
 
 
 class Worker:
@@ -39,7 +39,7 @@ class Worker:
         self.end_time = time.time()
 
 
-class PhysicsEngine:
+class PhimoCloud:
     def __init__(self, file_manager):
         self.file_manager = file_manager
         self.workers = {}
@@ -57,7 +57,7 @@ class PhysicsEngine:
         self.cleanup_thread.daemon = True
         self.cleanup_thread.start()
 
-        self.sh = SolverHandler()
+        self.eh = EngineHandler()
     
     def compute_simulation(self, userId, projectName, simulationName):
         if len(self.workers) > self.max_no_of_workers:
@@ -72,7 +72,7 @@ class PhysicsEngine:
 
         workerThread = Thread(
             target = worker.compute, 
-            args = (self.workerCompletionCallback, self.workerOutputCallback, self.sh.compute, simulationConfigs)
+            args = (self.workerCompletionCallback, self.workerOutputCallback, self.eh.compute, simulationConfigs)
         )
         workerThread.start()
 
@@ -131,4 +131,4 @@ class PhysicsEngine:
             time.sleep(self.cleanup_interval) 
     
     def list_solvers(self):
-        return self.sh.list_solvers()
+        return self.eh.list_solvers()

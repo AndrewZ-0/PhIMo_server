@@ -7,7 +7,7 @@ import base64
 #bespoke
 from adbm import DatabaseManager
 from afm import FileManager
-from PhimoCloud.physicsEngine import PhysicsEngine
+from PhimoCloud.PhimoCloud import PhimoCloud
 
 app = Flask(__name__)
 CORS(app, supports_credentials = True)
@@ -15,7 +15,7 @@ CORS(app, supports_credentials = True)
 db_manager = DatabaseManager()
 file_manager = FileManager()
 connected_clients = set()
-ape = PhysicsEngine(file_manager)
+phimoCloud = PhimoCloud(file_manager)
 
 
 def handle_client_disconnect(client_ip):
@@ -240,7 +240,7 @@ def delete_project():
     
     simulations = db_manager.list_project_simulations(userId, projectName)["data"]
     for simulation in simulations:
-        ape.terminateAssociatedWorkers(userId, projectName, simulation[0])
+        phimoCloud.terminateAssociatedWorkers(userId, projectName, simulation[0])
         db_manager.delete_simulation(userId, projectName, simulation[0])
 
     file_manager.delete_projectDir(userId, projectName)
@@ -361,7 +361,7 @@ def delete_simulation():
     projectName = data["projectName"]
     simulationName = data["simulationName"]
 
-    if ape.checkIfComputing(userId, projectName, simulationName):
+    if phimoCloud.checkIfComputing(userId, projectName, simulationName):
         return jsonify({"status": "ERR", "message": "Simulation still computing cannot edit without WorkerID"})
 
     if not db_manager.validate_userId(userId):
@@ -370,7 +370,7 @@ def delete_simulation():
     if not db_manager.project_exists(userId, projectName):
         return jsonify({"status": "ERR", "message": "Project does not exist"})
     
-    ape.terminateAssociatedWorkers(userId, projectName, simulationName)
+    phimoCloud.terminateAssociatedWorkers(userId, projectName, simulationName)
 
     file_manager.delete_simulation(userId, projectName, simulationName)
     return jsonify(db_manager.delete_simulation(userId, projectName, simulationName))
@@ -426,7 +426,7 @@ def compute_simulation():
     if response["status"] != "OK":
         return jsonify(response)
 
-    response = ape.compute_simulation(userId, projectName, simulationName)
+    response = phimoCloud.compute_simulation(userId, projectName, simulationName)
 
     return jsonify(response)
 
@@ -442,7 +442,7 @@ def stop_computing_simulation():
     if not db_manager.validate_userId(userId):
         return jsonify({"status": "ERR", "message": "Invalid certificate"})
 
-    ape.cancel_computing_simulation(workerId)
+    phimoCloud.cancel_computing_simulation(workerId)
 
     file_manager.delete_simulation(userId, projectName, simulationName)
     
@@ -461,7 +461,7 @@ def get_simComputing_progress():
     if not db_manager.validate_userId(userId):
         return jsonify({"status": "ERR", "message": "Invalid certificate"})
 
-    response = ape.getComputationProgress(workerId)
+    response = phimoCloud.getComputationProgress(workerId)
     return jsonify(response)
 
 @app.route("/update_accessSimulationTime", methods = ["POST"])
@@ -485,7 +485,7 @@ def list_solvers():
     userId = request.headers["certificate"]
 
     if db_manager.validate_userId(userId):
-        return jsonify(ape.list_solvers())
+        return jsonify(phimoCloud.list_solvers())
     else:
         return jsonify({"status": "ERR", "message": "Invalid certificate"})
 
