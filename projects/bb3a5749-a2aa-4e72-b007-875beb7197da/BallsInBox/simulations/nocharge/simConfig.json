@@ -6,7 +6,7 @@
             "e": 1
         },
         "drag": {
-            "compute": true,
+            "compute": false,
             "rho": 0.001225
         },
         "eForce": {
@@ -15,8 +15,8 @@
                 "y": 0,
                 "z": 0
             },
-            "E0": 8.854187817e-12,
-            "compute": true
+            "E0": 8.854187817e-05,
+            "compute": false
         },
         "gravity": {
             "G": 6.6743015e-11,
@@ -34,7 +34,7 @@
                 "z": 0
             },
             "M0": 1.256637061272e-06,
-            "compute": true
+            "compute": false
         }
     },
     "noOfFrames": 1000,
@@ -331,7 +331,7 @@
             ]
         },
         "Unnamed2": {
-            "charge": 0.001,
+            "charge": 1e-07,
             "colour": [
                 0,
                 0,

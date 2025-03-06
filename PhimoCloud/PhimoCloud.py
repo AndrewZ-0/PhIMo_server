@@ -2,11 +2,11 @@ from threading import Thread, Lock
 import uuid
 import time
 
-from PhimoCloud.engineHandler import EngineHandler
+from PhimoCloud.engineHandler import EngineHandler, ProcessHandler
 
 
 class Worker:
-    def __init__(self, workerId, userId, projectName, simulationName):
+    def __init__(self, engineHandler, workerId, userId, projectName, simulationName):
         self.workerId = workerId
         self.userId = userId
         self.projectName = projectName
@@ -15,7 +15,10 @@ class Worker:
         self.progress = 0
         self.end_time = None
 
-    def compute(self, workerCompletionCallback, outputCallback, task, simulationConfigs):
+        self.processHandler = ProcessHandler(engineHandler)
+        self.processHandler.startProcess()
+
+    def compute(self, workerCompletionCallback, outputCallback, simulationConfigs):
         self.computing = True
 
         particles = []
@@ -26,7 +29,7 @@ class Worker:
         header_data = " ".join(particles) + "\n"
         outputCallback(self.workerId, header_data)
 
-        self.taskGenerator = task(simulationConfigs)
+        self.taskGenerator = self.processHandler.compute(simulationConfigs)
         for frame, progress in self.taskGenerator:
             outputCallback(self.workerId, frame) #with \n char included
             self.progress = progress
@@ -35,6 +38,7 @@ class Worker:
         workerCompletionCallback(self.workerId)
 
     def terminate(self):
+        self.processHandler.terminate()
         self.computing = False
         self.end_time = time.time()
 
@@ -53,18 +57,18 @@ class PhimoCloud:
         self.worker_lifetime = 86400 #24 hour
         self.cleanup_interval = 600 #every 10 mins
 
+        self.engineHandler = EngineHandler()
+
         self.cleanup_thread = Thread(target = self.cleanupOrphanedWorkers)
         self.cleanup_thread.daemon = True
         self.cleanup_thread.start()
-
-        self.eh = EngineHandler()
     
     def compute_simulation(self, userId, projectName, simulationName):
         if len(self.workers) > self.max_no_of_workers:
             return {"status": "ERR", "message": "Physics engine worker stack is currently at full capacity. Try again later"}
 
         workerId = str(uuid.uuid4())
-        worker = Worker(workerId, userId, projectName, simulationName)
+        worker = Worker(self.engineHandler, workerId, userId, projectName, simulationName)
         with self.lock:
             self.workers[workerId] = worker
 
@@ -72,7 +76,7 @@ class PhimoCloud:
 
         workerThread = Thread(
             target = worker.compute, 
-            args = (self.workerCompletionCallback, self.workerOutputCallback, self.eh.compute, simulationConfigs)
+            args = (self.workerCompletionCallback, self.workerOutputCallback, simulationConfigs)
         )
         workerThread.start()
 
@@ -129,6 +133,3 @@ class PhimoCloud:
                     with self.lock:
                         self.workers.pop(workerId)
             time.sleep(self.cleanup_interval) 
-    
-    def list_solvers(self):
-        return self.eh.list_solvers()

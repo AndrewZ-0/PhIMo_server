@@ -1,11 +1,22 @@
 import subprocess
+import os
+import signal
 
 class EngineHandler:
     def __init__(self):
-        subprocess.run(["g++", "-std=c++23", "-O3", "-march=native", "-flto", "-o", f"PhimoCloud/PhysicsEngine/exe/main", f"PhimoCloud/PhysicsEngine/src/main.cpp"], check = True)
+        self.physicsEngine_path = "PhimoCloud/PhysicsEngine/exe/main"
     
+    def compile(self):
+        subprocess.run(["g++", "-std=c++23", "-O3", "-march=native", "-flto", "-o", self.physicsEngine_path, self.physicsEngine_path], check = True)
+
+
+class ProcessHandler:
+    def __init__(self, engineHandler: EngineHandler):
+        self.engineHandler = engineHandler
+
+    def startProcess(self):
         self.process = subprocess.Popen(
-            [f"PhimoCloud/PhysicsEngine/exe/main"],
+            [self.engineHandler.physicsEngine_path],
             stdin = subprocess.PIPE,
             stdout = subprocess.PIPE,
             stderr = subprocess.PIPE,
@@ -72,7 +83,6 @@ class EngineHandler:
 
         return input_data, noOfFrames
 
-    
     def compute(self, simConfigs):
         input_data, noOfFrames = self.parseConfigs(simConfigs)
 
@@ -91,6 +101,8 @@ class EngineHandler:
             return
             
     def terminate(self):
-        self.process.terminate()
+        self.process.terminate() #ask nicely for cpp to terminate
+        #self.process.kill() #yell at it to stop
+        #os.kill(self.process.pid, signal.SIGKILL) #tactical nuke
 
 

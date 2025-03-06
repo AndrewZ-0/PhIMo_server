@@ -1,0 +1,89 @@
+{
+    "deltaT": 0.016666666666666666,
+    "models": {
+        "collisions": {
+            "compute": true,
+            "e": 1
+        },
+        "drag": {
+            "compute": false,
+            "rho": 1.25
+        },
+        "eForce": {
+            "E": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "E0": 8.854187817e-12,
+            "compute": false
+        },
+        "gravity": {
+            "G": 6.6743015e-11,
+            "compute": true,
+            "g": {
+                "x": 0,
+                "y": -9.81,
+                "z": 0
+            }
+        },
+        "mForce": {
+            "B": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "M0": 1.256637061272e-06,
+            "compute": false
+        }
+    },
+    "noOfFrames": 10000,
+    "objects": {
+        "Unnamed3": {
+            "charge": 0,
+            "colour": [
+                0.9176470588235294,
+                0.9176470588235294,
+                0.9176470588235294
+            ],
+            "dimentions": [
+                10,
+                10
+            ],
+            "dtype": 1,
+            "orientation": [
+                0,
+                0,
+                0
+            ],
+            "position": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed4": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                -3,
+                1.4009810400544882,
+                -1
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                15.665499999999962,
+                0
+            ]
+        }
+    },
+    "stepsPerFrame": 1
+}

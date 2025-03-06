@@ -2,9 +2,9 @@
     "camera": {
         "mode": "Y-Polar",
         "pose": {
-            "r": 10,
-            "alt": 0.3725000000000001,
-            "azi": 3.720685307179595
+            "r": 20.300325880879388,
+            "alt": -0.1724999999999998,
+            "azi": 2.9606853071795687
         },
         "projection": {
             "far": 1000,
@@ -13,10 +13,12 @@
         },
         "sensitivity": {
             "draggingSensitivity": 0.001,
-            "movementSpeed": 6
+            "movementSpeed": 6,
+            "rotationSpeed": 6
         }
     },
     "shaders": {
         "mode": "basic"
-    }
+    },
+    "speed": 1
 }

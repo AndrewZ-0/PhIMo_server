@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, render_template, request, jsonify, make_response
 from flask_cors import CORS
 import re
 from datetime import datetime
@@ -489,5 +489,27 @@ def list_solvers():
     else:
         return jsonify({"status": "ERR", "message": "Invalid certificate"})
 
+
+
+serverPassword = "phimo123"
+
+#server index page stuff
+def restart_server():
+    print("Restarting")  # Replace this with actual restart logic if needed
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/restartServer", methods = ["POST"])
+def restart():
+    if request.headers.get("password") == serverPassword:
+        restart_server()
+        return jsonify({"status": "OK"})
+    else:
+        return jsonify({"status": "ERR", "message": "unauthorised"})
+
+
+
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0", port = 1234, debug = False, ssl_context = ("cert.pem", "key.pem"))
+    app.run(host = "0.0.0.0", port = 1234, debug = True, ssl_context = ("cert.pem", "key.pem"))
