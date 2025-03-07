@@ -58,6 +58,7 @@ class PhimoCloud:
         self.cleanup_interval = 600 #every 10 mins
 
         self.engineHandler = EngineHandler()
+        self.engineHandler.compile()
 
         self.cleanup_thread = Thread(target = self.cleanupOrphanedWorkers)
         self.cleanup_thread.daemon = True

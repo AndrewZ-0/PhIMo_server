@@ -4,10 +4,17 @@ import signal
 
 class EngineHandler:
     def __init__(self):
-        self.physicsEngine_path = "PhimoCloud/PhysicsEngine/exe/main"
+        self.physicsEngine_path = "PhimoCloud/PhysicsEngine"
+        self.mainFile = "main"
     
     def compile(self):
-        subprocess.run(["g++", "-std=c++23", "-O3", "-march=native", "-flto", "-o", self.physicsEngine_path, self.physicsEngine_path], check = True)
+        subprocess.run(["g++", "-std=c++23", "-O3", "-march=native", "-flto", "-o", self.getExecutable(), self.getSource()], check = True)
+    
+    def getExecutable(self):
+        return f"{self.physicsEngine_path}/exe/{self.mainFile}"
+
+    def getSource(self):
+        return f"{self.physicsEngine_path}/src/{self.mainFile}.cpp"
 
 
 class ProcessHandler:
@@ -16,7 +23,7 @@ class ProcessHandler:
 
     def startProcess(self):
         self.process = subprocess.Popen(
-            [self.engineHandler.physicsEngine_path],
+            [self.engineHandler.getExecutable()],
             stdin = subprocess.PIPE,
             stdout = subprocess.PIPE,
             stderr = subprocess.PIPE,
