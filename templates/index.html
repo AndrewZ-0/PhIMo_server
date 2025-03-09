@@ -1,36 +1,17 @@
 <!DOCTYPE html>
+
 <html lang = "en">
     <head>
         <meta charset = "UTF-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+
+        <script src = "index.js"></script>
+
         <title>PhIMo Server</title>
-        <script>
-            async function restartServer() {
-                if (confirm("Are you sure you want to restart the server?")) {
-                    const password = prompt("Enter password to restart the server:");
-                    if (!password) {
-                        return;
-                    }
-
-                    let headers = {
-                        "Content-Type": "application/json", 
-                        "password": password
-                    };
-
-                    const response = await fetch("/restartServer", {
-                        method: "POST", 
-                        headers: headers
-                    });
-
-                    const data = await response.json();
-                    alert(data.status);
-                }
-            }
-        </script>
     </head>
 
     <body>
         <h1>PhIMo Server</h1>
-        <button onclick = "restartServer()">Restart Server</button>
+        <p>The server is alive</p>
     </body>
 </html>
