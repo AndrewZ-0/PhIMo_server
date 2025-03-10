@@ -53,7 +53,12 @@ int main() {
         if (intergrator == 0) {
             linker.configureLeapfrog();
         }
-
+        if (intergrator == 1) {
+            linker.configureRungeKutta4();
+        }
+        if (intergrator == 2) {
+            linker.configureEuler();
+        }
 
         
         iss >> toggleCollision;

@@ -1,6 +1,8 @@
 #include "../headers/physics.h"
 #include "algorithms/bruteForcer.cpp"
 #include "intergrators/leapfrog.cpp"
+#include "intergrators/rungeKutta4.cpp"
+#include "intergrators/euler.cpp"
 
 void noOpComputePOPForces(std::function<void (std::vector<Particle>&, int, int, vec3, vec3)> applyPOPForces, std::vector<Particle>& particles) {}
 void noOpComputePlaneForces(std::function<void (std::vector<Particle>&, std::vector<Plane>&, int, int)> applyPlaneForces, std::vector<Particle>& particles, std::vector<Plane>& planes) {}
@@ -46,6 +48,14 @@ class SolverLinker {
 
         void configureLeapfrog() {
             this->particleUpdate_intergrator = leapFrog_updateParticles;
+        }
+
+        void configureRungeKutta4() {
+            this->particleUpdate_intergrator = rungeKutta4_updateParticles;
+        }
+
+        void configureEuler() {
+            this->particleUpdate_intergrator = euler_updateParticles;
         }
 
         void linkCollision(const double e) {

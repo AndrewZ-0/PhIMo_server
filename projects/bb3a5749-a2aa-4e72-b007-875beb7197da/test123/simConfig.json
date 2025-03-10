@@ -38,31 +38,31 @@
         },
         "solvers": {
             "algorithm": 0,
-            "intergrator": "0"
+            "intergrator": "1"
         }
     },
     "noOfFrames": 1000,
     "objects": {
         "Unnamed": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
             "dtype": 0,
+            "mass": 1,
             "position": [
                 0,
                 0,
                 0
             ],
+            "radius": 1,
             "velocity": [
                 0,
                 0,
                 0
-            ],
-            "radius": 1,
-            "mass": 1,
-            "charge": 0.001,
-            "dragCoef": 0.5,
-            "colour": [
-                0,
-                0,
-                1
             ]
         }
     },
