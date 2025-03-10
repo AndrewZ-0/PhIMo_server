@@ -27,6 +27,7 @@ int main() {
     std::string input;
     double dt;
     int max_no_frames, stepsPerFrame;
+    int algorithm, intergrator;
     double mass, charge, Cd, sx, sy, sz, vx, vy, vz, radius, length, width, pitch, yaw, roll;
     int dtype;
     bool toggleCollision, toggleGravity, toggleEForce, toggleMForce, toggleDrag;
@@ -42,6 +43,18 @@ int main() {
         std::istringstream iss(input);
         
         iss >> dt >> max_no_frames >> stepsPerFrame;
+
+        iss >> algorithm;
+        if (algorithm == 0) {
+            linker.configureBruteForcer();
+        }
+        
+        iss >> intergrator;
+        if (intergrator == 0) {
+            linker.configureLeapfrog();
+        }
+
+
         
         iss >> toggleCollision;
         if (toggleCollision) {

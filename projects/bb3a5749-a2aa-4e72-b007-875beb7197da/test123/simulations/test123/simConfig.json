@@ -1,0 +1,70 @@
+{
+    "deltaT": 0.01,
+    "models": {
+        "collisions": {
+            "compute": true,
+            "e": 1
+        },
+        "drag": {
+            "compute": true,
+            "rho": 1.225
+        },
+        "eForce": {
+            "E": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "E0": 8.854187817e-12,
+            "compute": true
+        },
+        "gravity": {
+            "G": 6.6743015e-11,
+            "compute": true,
+            "g": {
+                "x": 0,
+                "y": -9.81,
+                "z": 0
+            }
+        },
+        "mForce": {
+            "B": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "M0": 1.256637061272e-06,
+            "compute": true
+        },
+        "solvers": {
+            "algorithm": 0,
+            "intergrator": "0"
+        }
+    },
+    "noOfFrames": 1000,
+    "objects": {
+        "Unnamed": {
+            "dtype": 0,
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "mass": 1,
+            "charge": 0.001,
+            "dragCoef": 0.5,
+            "colour": [
+                0,
+                0,
+                1
+            ]
+        }
+    },
+    "stepsPerFrame": 1000
+}

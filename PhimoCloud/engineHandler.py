@@ -38,6 +38,12 @@ class ProcessHandler:
 
         input_data = f"{deltaT} {noOfFrames} {stepsPerFrame}"
 
+        solverSettings = models["solvers"]
+        algorithm = int(solverSettings["algorithm"])
+        intergrator = int(solverSettings["intergrator"])
+
+        input_data += f" {algorithm} {intergrator}"
+
         #collision, gravity, electric, magnetic
         collision = models["collisions"]
         gravity = models["gravity"]
@@ -101,7 +107,7 @@ class ProcessHandler:
                 frame = self.process.stdout.readline()
 
                 yield frame, i / noOfFrames
-            frame = self.process.stdout.readline()[ :-1] #to removing trailing /n
+            frame = self.process.stdout.readline()[ : -1] #to removing trailing /n
             yield frame, 1
         except GeneratorExit:
             self.terminate()

@@ -93,6 +93,7 @@ class FileManager:
 
     def get_screenshot(self, userId, projectName):
         screenshot_path = os.path.join(self.base_dir, userId, projectName, "screenshot.png")
+        
         if os.path.exists(screenshot_path):
             with open(screenshot_path, "rb") as f:
                 return f.read()

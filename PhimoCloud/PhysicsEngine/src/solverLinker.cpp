@@ -11,6 +11,8 @@ class SolverLinker {
         void (* computePOPForces)(std::function<void(std::vector<Particle>&, int, int, vec3, vec3)>, std::vector<Particle>&);
         void (* computePlaneForces)(std::function<void(std::vector<Particle>&, std::vector<Plane>&, int, int)>, std::vector<Particle>&, std::vector<Plane>&);
 
+        void (* particleUpdate_intergrator)(std::function<void(std::vector<Particle>&, std::vector<Plane>&)>, std::function<void(std::vector<Particle>&, std::vector<Plane>&)>, std::vector<Particle>&, std::vector<Plane>&, double);
+
         void removeAcitveGlobalFunction(std::vector<void (*)(std::vector<Particle>&, int, Constants)> functionList, void (*functionToRemove)(std::vector<Particle>&, int, Constants)) {
             functionList.erase(std::remove(functionList.begin(), functionList.end(), functionToRemove), functionList.end());
         }
@@ -26,7 +28,7 @@ class SolverLinker {
 
         //apply integrator
         void updateParticles(std::vector<Particle>& particles, std::vector<Plane>& planes, double dt) {
-            leapFrog_updateParticles(
+            this->particleUpdate_intergrator(
                 [&](std::vector<Particle>& particles, std::vector<Plane>& planes) {
                     this->computeForces(particles, planes);
                 }, 
@@ -35,6 +37,15 @@ class SolverLinker {
                 }, 
                 particles, planes, dt
             );
+        }
+
+        void configureBruteForcer() {
+            this->computePOPForces = bruteForceComputePOPForces;
+            this->computePlaneForces = bruteForceComputePlaneForces;
+        }
+
+        void configureLeapfrog() {
+            this->particleUpdate_intergrator = leapFrog_updateParticles;
         }
 
         void linkCollision(const double e) {
@@ -139,18 +150,12 @@ class SolverLinker {
                 activePOPCollisionSolvers.clear();
                 this->computePOPForces = noOpComputePOPForces;
             } 
-            else {
-                this->computePOPForces = bruteForceComputePOPForces;
-            }
         
             if (planes.empty()) {
                 activePlaneSolvers.clear();
                 activePlaneCollisionSolvers.clear();
                 this->computePlaneForces = noOpComputePlaneForces;
             } 
-            else {
-                this->computePlaneForces = bruteForceComputePlaneForces;
-            }
 
             if (! this->phyConsts.g) {
                 removeAcitveGlobalFunction(activeGlobalForces, applyUniformGravity);
