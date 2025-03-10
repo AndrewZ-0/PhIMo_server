@@ -38,7 +38,7 @@
         },
         "solvers": {
             "algorithm": 0,
-            "intergrator": "1"
+            "intergrator": "0"
         }
     },
     "noOfFrames": 1000,

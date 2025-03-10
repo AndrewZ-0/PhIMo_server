@@ -47,7 +47,7 @@ class SolverLinker {
         }
 
         void configureLeapfrog() {
-            this->particleUpdate_intergrator = leapFrog_updateParticles;
+            this->particleUpdate_intergrator = leapfrog_updateParticles;
         }
 
         void configureRungeKutta4() {
