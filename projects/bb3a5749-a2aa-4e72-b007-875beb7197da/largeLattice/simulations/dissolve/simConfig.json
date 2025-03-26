@@ -1,0 +1,378 @@
+{
+    "deltaT": 0.01,
+    "models": {
+        "collisions": {
+            "compute": true,
+            "e": 1
+        },
+        "drag": {
+            "compute": false,
+            "rho": 1.225
+        },
+        "eForce": {
+            "E": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "E0": 8.854187817e-12,
+            "compute": true
+        },
+        "gravity": {
+            "G": 6.6743015e-11,
+            "compute": false,
+            "g": {
+                "x": 0,
+                "y": -9.81,
+                "z": 0
+            }
+        },
+        "mForce": {
+            "B": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "M0": 1.256637061272e-06,
+            "compute": true
+        },
+        "solvers": {
+            "algorithm": 0,
+            "intergrator": 0
+        }
+    },
+    "noOfFrames": 1000,
+    "objects": {
+        "Unnamed": {
+            "charge": -0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                -2,
+                0,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed2": {
+            "charge": 0.0012,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                6.5,
+                -0.5,
+                0
+            ],
+            "radius": 0.2,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed2_copy": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                -2,
+                0,
+                2
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed2_copy2": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                -2,
+                -2,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed2_copy3": {
+            "charge": 0.0012,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                6.5,
+                0.5,
+                0
+            ],
+            "radius": 0.2,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy": {
+            "charge": -0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                2,
+                0,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy2": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                2,
+                -2,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy2_copy": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                0,
+                -2,
+                2
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy2_copy_copy": {
+            "charge": 0.001,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                2,
+                0,
+                2
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy3": {
+            "charge": -0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                0,
+                -2,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy_copy": {
+            "charge": -0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                -2,
+                -2,
+                2
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy_copy2": {
+            "charge": -0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 2,
+            "position": [
+                7,
+                0,
+                0
+            ],
+            "radius": 0.5,
+            "velocity": [
+                -3.5,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy_copy_copy": {
+            "charge": -0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                2,
+                -2,
+                2
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy_copy_copy_copy": {
+            "charge": -0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.5,
+            "dtype": 0,
+            "mass": 3,
+            "position": [
+                0,
+                0,
+                2
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        }
+    },
+    "stepsPerFrame": 1000
+}

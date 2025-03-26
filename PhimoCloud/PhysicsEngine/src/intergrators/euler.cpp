@@ -5,8 +5,8 @@ void euler_updateParticles(std::function<void (std::vector<Particle>&, std::vect
     computeForces(particles, planes);
     
     for (Particle& p : particles) {
-        p.v += p.a * dt;
         p.s += p.v * dt;
+        p.v += p.a * dt;
     }
 
     applyCollisions(particles, planes);

@@ -38,10 +38,10 @@
         },
         "solvers": {
             "algorithm": 0,
-            "intergrator": "0"
+            "intergrator": "1"
         }
     },
-    "noOfFrames": 1000,
+    "noOfFrames": 500,
     "objects": {
         "Unnamed": {
             "charge": -0.001,
@@ -1017,5 +1017,5 @@
             ]
         }
     },
-    "stepsPerFrame": 400
+    "stepsPerFrame": 100
 }

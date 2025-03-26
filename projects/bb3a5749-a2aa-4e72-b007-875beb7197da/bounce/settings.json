@@ -1,0 +1,24 @@
+{
+    "camera": {
+        "mode": "Y-Polar",
+        "pose": {
+            "r": 12.199457393582158,
+            "alt": 0.35000000000000003,
+            "azi": 2.923185307179585
+        },
+        "projection": {
+            "far": 1000,
+            "fov": 45,
+            "near": 0.01
+        },
+        "sensitivity": {
+            "draggingSensitivity": 0.001,
+            "movementSpeed": 6,
+            "rotationSpeed": 6
+        }
+    },
+    "shaders": {
+        "mode": "basic"
+    },
+    "speed": 1
+}

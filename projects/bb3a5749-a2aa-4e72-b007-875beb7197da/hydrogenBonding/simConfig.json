@@ -1,0 +1,444 @@
+{
+    "deltaT": 0.01,
+    "models": {
+        "collisions": {
+            "compute": true,
+            "e": 1
+        },
+        "drag": {
+            "compute": true,
+            "rho": 10
+        },
+        "eForce": {
+            "E": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "E0": 8.854187817e-12,
+            "compute": true
+        },
+        "gravity": {
+            "G": 6.6743015e-11,
+            "compute": false,
+            "g": {
+                "x": 0,
+                "y": -9.81,
+                "z": 0
+            }
+        },
+        "mForce": {
+            "B": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "M0": 1.256637061272e-06,
+            "compute": true
+        },
+        "solvers": {
+            "algorithm": 0,
+            "intergrator": 0
+        }
+    },
+    "noOfFrames": 1000,
+    "objects": {
+        "Unnamed": {
+            "charge": 0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 16,
+            "position": [
+                -3.355602714619045,
+                0,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                1,
+                -1,
+                0
+            ]
+        },
+        "Unnamed2": {
+            "charge": 0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.001,
+            "dtype": 0,
+            "mass": 16,
+            "position": [
+                3.4399950539345783,
+                0,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                -1,
+                1,
+                0
+            ]
+        },
+        "Unnamed2_copy": {
+            "charge": 0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.001,
+            "dtype": 0,
+            "mass": 16,
+            "position": [
+                0.46116493501550426,
+                2.303790654593781,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                2.5385494208893387,
+                0,
+                -1.1858527473472205
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                2.6519445899927754,
+                0,
+                1.2084517947322788
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy_copy": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                -4.178718069539389,
+                0,
+                1.2084517947322788
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy_copy_copy": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                -4.199289258619096,
+                0,
+                -1.2195022608375807
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy_copy_copy_copy": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                -1.7188793497057744,
+                -1.214552320118783,
+                1.1917256948035497
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy_copy_copy_copy_copy": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                -0.8438112269190798,
+                2.0067640968633,
+                -0.6733947886060787
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy_copy_copy_copy_copy_copy": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                -1.7992892586190965,
+                -1.263046288562642,
+                -1.2195022608375807
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy_copy_copy_copy_copy_copy_copy": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                0.23475064794823264,
+                1.5689550843801658,
+                1.2266690801820292
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy_copy_copy_copy_copy_copy_copy_copy": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                1.0347506479482327,
+                -3.640184949764734,
+                1.2266690801820292
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy_copy_copy_copy_copy_copy_copy_copy2": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                -0.6085088046045648,
+                -3.63515542735742,
+                -0.41822833701499906
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy": {
+            "charge": 0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 16,
+            "position": [
+                -1.355602714619045,
+                -2,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed_copy_copy": {
+            "charge": 0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 16,
+            "position": [
+                0.644397285380955,
+                -4,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed2_copy2": {
+            "charge": 0.001,
+            "colour": [
+                1,
+                0.14901960784313725,
+                0
+            ],
+            "dragCoef": 0.001,
+            "dtype": 0,
+            "mass": 16,
+            "position": [
+                5.439995053934578,
+                -2,
+                0
+            ],
+            "radius": 1,
+            "velocity": [
+                -1,
+                1,
+                0
+            ]
+        },
+        "Unnamed3_copy2": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                5.905904819140787,
+                -1.3297740231149164,
+                1.150598564444198
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        },
+        "Unnamed3_copy3": {
+            "charge": -0.0005,
+            "colour": [
+                0,
+                0,
+                1
+            ],
+            "dragCoef": 0.01,
+            "dtype": 0,
+            "mass": 1,
+            "position": [
+                4.907840438598654,
+                -1.6,
+                -1.1858527473472205
+            ],
+            "radius": 0.4,
+            "velocity": [
+                0,
+                0,
+                0
+            ]
+        }
+    },
+    "stepsPerFrame": 1000
+}

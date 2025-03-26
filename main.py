@@ -19,19 +19,6 @@ phimoCloud = PhimoCloud(file_manager)
 
 
 
-
-#legacy
-"""
-def handle_client_disconnect(client_ip):
-    if client_ip in connected_clients:
-        connected_clients.remove(client_ip)
-        print(f"Client {client_ip} disconnected")
-    
-@app.route("/server_status", methods = ["GET"])
-def server_status():
-    return jsonify({"status": "RUNNING"})"
-"""
-
 @app.route("/connect", methods = ["GET"])
 def handle_client_connect():
     client_ip = request.remote_addr
@@ -39,15 +26,6 @@ def handle_client_connect():
 
     return jsonify({"response": "CONNECTED"})
 
-#legacy
-""" 
-@app.route("/disconnect", methods = ["GET"])
-def handle_client_disconnect_route():
-    client_ip = request.remote_addr
-    handle_client_disconnect(client_ip)
-
-    return jsonify({"response": "DISCONNECTED"})"
-"""
 
 @app.route("/login", methods = ["POST"])
 def login():
