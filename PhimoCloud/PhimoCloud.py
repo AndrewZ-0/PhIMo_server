@@ -110,14 +110,14 @@ class PhimoCloud:
                 #self.workers.pop(workerId)
 
     def terminateAssociatedWorkers(self, userId, projectName, simulationName):
-        workerNames = self.workers.values()
-        for worker in workerNames:
-            if worker.userId == userId and worker.projectName == projectName and worker.simulationName == simulationName:
-                if worker.computing:
-                    worker.terminate()
-                
-                with self.lock:
-                    self.workers.pop(worker.workerId)
+        with self.lock:
+            workerNames = self.workers.values()
+            for worker in workerNames:
+                if worker.userId == userId and worker.projectName == projectName and worker.simulationName == simulationName:
+                    if worker.computing:
+                        worker.terminate()
+                    
+                        self.workers.pop(worker.workerId)
     
     def checkIfComputing(self, userId, projectName, simulationName):
         for worker in self.workers.values():

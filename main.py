@@ -18,7 +18,6 @@ connected_clients = set()
 phimoCloud = PhimoCloud(file_manager)
 
 
-
 @app.route("/connect", methods = ["GET"])
 def handle_client_connect():
     client_ip = request.remote_addr

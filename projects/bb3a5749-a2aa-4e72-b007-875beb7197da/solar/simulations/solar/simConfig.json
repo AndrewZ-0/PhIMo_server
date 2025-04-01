@@ -1,13 +1,56 @@
 {
-    "deltaT": 0.03,
-    "noOfFrames": 20000,
+    "deltaT": 0.01,
+    "models": {
+        "collisions": {
+            "compute": false,
+            "e": 1
+        },
+        "drag": {
+            "compute": false,
+            "rho": 0.1225
+        },
+        "eForce": {
+            "E": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "E0": 8.854187817e-12,
+            "compute": false
+        },
+        "gravity": {
+            "G": 6.6743015e-11,
+            "compute": true,
+            "g": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        "mForce": {
+            "B": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "M0": 1.256637061272e-06,
+            "compute": false
+        },
+        "solvers": {
+            "algorithm": 0,
+            "intergrator": 0
+        }
+    },
+    "noOfFrames": 2000,
     "objects": {
         "EARTH": {
+            "charge": 0,
             "colour": [
                 0,
                 0.2,
                 1
             ],
+            "dragCoef": 0,
             "dtype": 0,
             "mass": 500000000,
             "position": [
@@ -23,11 +66,13 @@
             ]
         },
         "Interloper": {
+            "charge": 0,
             "colour": [
                 0,
                 0,
                 1
             ],
+            "dragCoef": 0,
             "dtype": 0,
             "mass": 1,
             "position": [
@@ -43,11 +88,13 @@
             ]
         },
         "Moon": {
+            "charge": 0,
             "colour": [
                 0,
                 0,
                 1
             ],
+            "dragCoef": 0,
             "dtype": 0,
             "mass": 1000000,
             "position": [
@@ -63,11 +110,13 @@
             ]
         },
         "Sun": {
+            "charge": 0,
             "colour": [
                 0.8823529411764706,
                 1,
                 0
             ],
+            "dragCoef": 0,
             "dtype": 0,
             "mass": 10000000000,
             "position": [
@@ -83,11 +132,13 @@
             ]
         },
         "planet2": {
+            "charge": 0,
             "colour": [
                 0,
                 0,
                 1
             ],
+            "dragCoef": 0,
             "dtype": 0,
             "mass": 1,
             "position": [
@@ -103,11 +154,13 @@
             ]
         },
         "weirdOrbit": {
+            "charge": 0,
             "colour": [
                 0,
                 0,
                 1
             ],
+            "dragCoef": 0,
             "dtype": 0,
             "mass": 0.8,
             "position": [
@@ -122,5 +175,6 @@
                 -0.08
             ]
         }
-    }
+    },
+    "stepsPerFrame": 2000
 }

@@ -1,17 +1,22 @@
 {
     "camera": {
-    "mode": "Y-Polar", 
-    "pose": {"r": 10, "alt": 0, "azi": 0}, 
-    "projection" : {
-        "near": 0.01, 
-        "far": 1000,
-        "fov": 45
+        "mode": "Y-Polar",
+        "pose": {
+            "alt": 0.21999999999999922,
+            "azi": 0.5500000000000194,
+            "r": 54.44323558922684
+        },
+        "projection": {
+            "far": 1000,
+            "fov": 45,
+            "near": 0.01
+        },
+        "sensitivity": {
+            "draggingSensitivity": 0.001,
+            "movementSpeed": 6,
+            "rotationSpeed": 5
+        }
     },
-    "sensitivity": {
-        "draggingSensitivity": 0.001, 
-        "movementSpeed": 6
-    }
-    }, 
     "shaders": {
         "mode": "basic"
     }
