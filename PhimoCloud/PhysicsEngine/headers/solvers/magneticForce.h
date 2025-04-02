@@ -12,6 +12,7 @@ inline void applyMagneticForce(std::vector<Particle>& particles, int i, int j, v
     particles[i].a -= cross(particles[i].v, cross(particles[j].v, alpha)) / particles[i].mass;
     particles[j].a += cross(particles[j].v, cross(particles[i].v, alpha)) / particles[j].mass;
 }
+
 inline void applyUniformMagneticForce(std::vector<Particle>& particles, int i, Constants phyConsts) {
     particles[i].a += cross(particles[i].v, phyConsts.B) / particles[i].mass;
 }

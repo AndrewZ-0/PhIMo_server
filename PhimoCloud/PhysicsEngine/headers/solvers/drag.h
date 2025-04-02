@@ -14,9 +14,7 @@ inline void applyDrag(std::vector<Particle>& particles, int i, Constants phyCons
 
     double dragForce = 0.5 * phyConsts.rho * speedSquared * particles[i].Cd * particles[i].A;
 
-    vec3 a = (dragForce / particles[i].mass) * normalise(particles[i].v);
-
-    particles[i].a -= a;
+    particles[i].a -= (dragForce / particles[i].mass) * normalise(particles[i].v);
 }
 
 #endif
