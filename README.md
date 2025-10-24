@@ -1,4 +1,4 @@
-Flask server and cloud engine of the PhIMo project (should be used together with PhIMo_client)
+Flask server and cloud engine of the PhIMo project (should be used together with PhIMo_client https://github.com/AndrewZ-0/PhIMo_client)
 
 Contents:
 * A Python Flask server to host AFM, ADBM and PhIMo Cloud
