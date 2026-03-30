@@ -8,7 +8,7 @@ void rungeKutta4_updateParticles(std::function<void (std::vector<Particle>&, std
     double halfDt = dt / 2;
     double sixthDt = dt / 6;
 
-    computeForces(k1, planes);
+    computeForces(particles, planes);
     for (int i = 0; i < len; i++) {
         k1[i].s = particles[i].v;
         k1[i].v = particles[i].a;
@@ -20,7 +20,9 @@ void rungeKutta4_updateParticles(std::function<void (std::vector<Particle>&, std
     }
     computeForces(k2, planes);
     for (int i = 0; i < len; i++) {
-        k2[i].v = k2[i].a; 
+        vec3 v = k2[i].v;
+        k2[i].s = v;
+        k2[i].v = k2[i].a;
     }
 
     for (int i = 0; i < len; i++) {
@@ -29,15 +31,20 @@ void rungeKutta4_updateParticles(std::function<void (std::vector<Particle>&, std
     }
     computeForces(k3, planes);
     for (int i = 0; i < len; i++) {
+        vec3 v = k3[i].v;
+        k3[i].s = v;
         k3[i].v = k3[i].a;
     }
 
+    // k4
     for (int i = 0; i < len; i++) {
         k4[i].s = particles[i].s + k3[i].s * dt;
         k4[i].v = particles[i].v + k3[i].v * dt;
     }
     computeForces(k4, planes);
     for (int i = 0; i < len; i++) {
+        vec3 v = k4[i].v;
+        k4[i].s = v;
         k4[i].v = k4[i].a;
     }
 

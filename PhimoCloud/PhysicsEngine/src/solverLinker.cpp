@@ -15,7 +15,7 @@ class SolverLinker {
 
         void (* particleUpdate_intergrator)(std::function<void(std::vector<Particle>&, std::vector<Plane>&)>, std::function<void(std::vector<Particle>&, std::vector<Plane>&)>, std::vector<Particle>&, std::vector<Plane>&, double);
 
-        void removeAcitveGlobalFunction(std::vector<void (*)(std::vector<Particle>&, int, Constants)> functionList, void (*functionToRemove)(std::vector<Particle>&, int, Constants)) {
+        void removeActiveGlobalFunction(std::vector<void (*)(std::vector<Particle>&, int, Constants)> functionList, void (*functionToRemove)(std::vector<Particle>&, int, Constants)) {
             functionList.erase(std::remove(functionList.begin(), functionList.end(), functionToRemove), functionList.end());
         }
 
@@ -168,15 +168,15 @@ class SolverLinker {
             } 
 
             if (! this->phyConsts.g) {
-                removeAcitveGlobalFunction(activeGlobalForces, applyUniformGravity);
+                removeActiveGlobalFunction(activeGlobalForces, applyUniformGravity);
             }
 
             if (! this->phyConsts.E) {
-                removeAcitveGlobalFunction(activeGlobalForces, applyUniformElectricForce);
+                removeActiveGlobalFunction(activeGlobalForces, applyUniformElectricForce);
             }
 
             if (! this->phyConsts.B) {
-                removeAcitveGlobalFunction(activeGlobalForces, applyUniformMagneticForce);
+                removeActiveGlobalFunction(activeGlobalForces, applyUniformMagneticForce);
             }
         }
 };
